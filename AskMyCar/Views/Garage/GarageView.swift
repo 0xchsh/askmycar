@@ -13,10 +13,7 @@ struct GarageView: View {
             List {
                 ForEach(vehicles, id: \.id) { vehicle in
                     Button {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                        viewModel.setActiveVehicle(vehicle, allVehicles: vehicles, appState: appState)
-                        dismiss()
+                        switchToVehicle(vehicle)
                     } label: {
                         VehicleCard(vehicle: vehicle)
                     }
@@ -24,7 +21,7 @@ struct GarageView: View {
                 }
                 .onDelete(perform: deleteVehicles)
             }
-            .navigationTitle("Garage")
+            .navigationTitle("Your Garage")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -52,6 +49,27 @@ struct GarageView: View {
                 }
             }
         }
+    }
+
+    private func switchToVehicle(_ vehicle: Vehicle) {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+
+        // If tapping the already-active vehicle, just dismiss
+        if vehicle.id == appState.activeVehicle?.id {
+            dismiss()
+            return
+        }
+
+        viewModel.setActiveVehicle(vehicle, allVehicles: vehicles, appState: appState)
+
+        // Create a new chat session for the selected vehicle
+        let session = ChatSession(title: "New Chat", vehicle: vehicle)
+        modelContext.insert(session)
+
+        // Navigate to the new session
+        appState.navigationPath = [session]
+        dismiss()
     }
 
     private func deleteVehicles(at offsets: IndexSet) {

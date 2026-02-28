@@ -9,6 +9,7 @@ struct AskMyCarApp: App {
         WindowGroup {
             ContentView()
                 .environment(appState)
+                .fontDesign(.rounded)
         }
         .modelContainer(for: [Vehicle.self, ChatSession.self, ChatMessage.self])
     }
@@ -25,25 +26,32 @@ struct ContentView: View {
         Group {
             if vehicles.isEmpty {
                 OnboardingView()
-            } else if let activeVehicle = appState.activeVehicle {
-                ChatView(vehicle: activeVehicle)
             } else {
-                ProgressView()
+                NavigationStack(path: $state.navigationPath) {
+                    ChatHistoryView()
+                        .navigationDestination(for: ChatSession.self) { session in
+                            ChatView(session: session)
+                        }
+                }
             }
-        }
-        .sheet(isPresented: $state.showGarage) {
-            GarageView()
-        }
-        .sheet(isPresented: $state.showSettings) {
-            SettingsView()
         }
         .onAppear {
             if appState.activeVehicle == nil {
                 appState.activeVehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
             }
         }
-        .onChange(of: vehicles.count) {
-            if appState.activeVehicle == nil {
+        .onChange(of: vehicles.count) { oldCount, newCount in
+            // First vehicle just added via onboarding
+            if oldCount == 0 && newCount > 0 {
+                let vehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
+                appState.activeVehicle = vehicle
+
+                if let vehicle, appState.navigationPath.isEmpty {
+                    let session = ChatSession(title: "New Chat", vehicle: vehicle)
+                    modelContext.insert(session)
+                    appState.navigationPath = [session]
+                }
+            } else if appState.activeVehicle == nil {
                 appState.activeVehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
             }
         }

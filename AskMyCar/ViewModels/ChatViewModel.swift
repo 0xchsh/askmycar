@@ -9,25 +9,59 @@ final class ChatViewModel {
     var isLoading = false
     var isStreaming = false
     var errorMessage: String?
+    var isLoadingVehicleData = false
 
     private var currentSession: ChatSession?
     private var streamTask: Task<Void, Never>?
     private let aiService = AIService()
+    private let vehicleAPIService = VehicleAPIService()
+    private var profileDocument: String?
 
-    func loadOrCreateSession(for vehicle: Vehicle, in context: ModelContext) {
-        if let existingSession = vehicle.sessions.first {
-            currentSession = existingSession
-            messages = existingSession.sortedMessages
+    func loadSession(_ session: ChatSession) {
+        currentSession = session
+        messages = session.sortedMessages
+
+        guard let vehicle = session.vehicle else { return }
+
+        // Use cached profile document if available
+        if let cached = vehicle.cachedProfileDocument {
+            profileDocument = cached
         } else {
-            let session = ChatSession(title: vehicle.displayName)
-            session.vehicle = vehicle
-            context.insert(session)
-            currentSession = session
-            messages = []
+            // Fetch from API, build profile, and cache it
+            isLoadingVehicleData = true
+            let vin = vehicle.vin
+            let year = vehicle.year
+            let make = vehicle.make
+            let model = vehicle.model
+            let trim = vehicle.trim
+            let nickname = vehicle.nickname
+
+            Task {
+                let apiData = await vehicleAPIService.fetchVehicleContext(
+                    vin: vin, year: year, make: make, model: model
+                )
+
+                let doc = VehicleContext.buildProfileDocument(
+                    nickname: nickname,
+                    year: year,
+                    make: make,
+                    model: model,
+                    trim: trim,
+                    vin: vin,
+                    apiData: apiData
+                )
+
+                profileDocument = doc
+                // Persist on the vehicle so we never re-fetch
+                vehicle.cachedProfileDocument = doc
+                cacheRawAPIData(apiData, on: vehicle)
+                isLoadingVehicleData = false
+            }
         }
     }
 
-    func sendMessage(for vehicle: Vehicle, in context: ModelContext) {
+    func sendMessage(in context: ModelContext) {
+        guard let session = currentSession, let vehicle = session.vehicle else { return }
         let text = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
 
@@ -40,6 +74,11 @@ final class ChatViewModel {
         messages.append(userMessage)
         currentSession?.updatedAt = Date()
 
+        // Auto-title session after first user message
+        if messages.filter({ $0.role == .user }).count == 1 {
+            currentSession?.title = text.count > 50 ? String(text.prefix(50)) + "..." : text
+        }
+
         let assistantMessage = ChatMessage(role: .assistant, content: "")
         assistantMessage.session = currentSession
         context.insert(assistantMessage)
@@ -48,7 +87,10 @@ final class ChatViewModel {
         isLoading = true
         isStreaming = true
 
-        let systemPrompt = AIService.buildSystemPrompt(for: vehicle)
+        let systemPrompt = AIService.buildSystemPrompt(
+            for: vehicle,
+            vehicleProfile: profileDocument
+        )
 
         var aiMessages: [AIMessage] = [
             AIMessage(role: "system", content: systemPrompt)
@@ -104,5 +146,26 @@ final class ChatViewModel {
             "Tell me about the safety features",
             "What's the towing capacity?"
         ]
+    }
+
+    // MARK: - Caching
+
+    private func cacheRawAPIData(_ apiData: VehicleContext, on vehicle: Vehicle) {
+        vehicle.cachedOwnerManualURL = apiData.ownerManualURL
+
+        if let maintenance = apiData.maintenance,
+           let data = try? JSONEncoder().encode(maintenance) {
+            vehicle.cachedMaintenanceJSON = String(data: data, encoding: .utf8)
+        }
+        if let recalls = apiData.recalls,
+           let data = try? JSONEncoder().encode(recalls) {
+            vehicle.cachedRecallsJSON = String(data: data, encoding: .utf8)
+        }
+        if let warranty = apiData.warranty,
+           let data = try? JSONEncoder().encode(warranty) {
+            vehicle.cachedWarrantyJSON = String(data: data, encoding: .utf8)
+        }
+
+        vehicle.vehicleDataLastFetched = Date()
     }
 }

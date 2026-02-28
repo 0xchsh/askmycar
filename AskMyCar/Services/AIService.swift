@@ -49,7 +49,7 @@ actor AIService {
         AsyncThrowingStream { continuation in
             let task = Task {
                 do {
-                    guard let apiKey = KeychainService.load(key: AIService.apiKeyKeychainKey), !apiKey.isEmpty else {
+                    guard let apiKey = AIService.resolveAPIKey(), !apiKey.isEmpty else {
                         throw AIServiceError.noAPIKey
                     }
 
@@ -110,21 +110,41 @@ actor AIService {
         }
     }
 
-    static func buildSystemPrompt(for vehicle: Vehicle, context: String? = nil) -> String {
+    static func resolveAPIKey() -> String? {
+        // 1. Check Keychain (set via Settings screen)
+        if let key = KeychainService.load(key: AIService.apiKeyKeychainKey), !key.isEmpty {
+            return key
+        }
+        // 2. Fall back to Secrets.plist
+        if let url = Bundle.main.url(forResource: "Secrets", withExtension: "plist"),
+           let data = try? Data(contentsOf: url),
+           let dict = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any],
+           let key = dict["OPENROUTER_API_KEY"] as? String,
+           key != "YOUR_KEY_HERE" && !key.isEmpty {
+            return key
+        }
+        return nil
+    }
+
+    static func buildSystemPrompt(for vehicle: Vehicle, vehicleProfile: String? = nil) -> String {
         var prompt = """
-        You are a friendly, knowledgeable car expert helping the owner of a \(vehicle.fullDisplayName).
-        Reply in a warm, conversational tone — like a trusted mechanic friend.
-        Keep answers concise and easy to scan. Use short paragraphs and line breaks for readability.
-        You may use **bold** for emphasis, but do NOT use markdown headers (#), horizontal rules (---), or bullet lists (- item). Just write naturally.
-        If you're unsure about something specific to this exact vehicle, say so honestly rather than guessing.
+        You are a helpful car expert talking to the owner of a \(vehicle.fullDisplayName).
+        Talk like a knowledgeable friend — casual, clear, and straight to the point.
+
+        Rules for every reply:
+        • Give the specific answer first, then explain briefly if needed.
+        • Use **bold** for key facts (e.g. fuel type, part numbers, specs).
+        • Keep it short — a few sentences is usually enough. No filler.
+        • Do NOT use markdown headers (#), horizontal rules (---), or bullet lists (- item). Write in plain, natural sentences and short paragraphs.
+        • Never lecture or over-explain. The owner just wants a quick, trustworthy answer.
+        • If you're not sure about something for this exact vehicle, say so — don't guess.
+        • Do NOT point out model year mismatches or decode the VIN unless the user asks. Just answer their question for the vehicle on file.
+        • When referencing the owner's manual, mention it's available as a PDF and give the link if you have it.
+        • Use the maintenance schedule, recalls, and warranty data below to give accurate, vehicle-specific answers.
         """
 
-        if let vin = vehicle.vin {
-            prompt += "\nThe vehicle's VIN is \(vin)."
-        }
-
-        if let context {
-            prompt += "\n\nAdditional context:\n\(context)"
+        if let vehicleProfile {
+            prompt += "\n\n\(vehicleProfile)"
         }
 
         return prompt

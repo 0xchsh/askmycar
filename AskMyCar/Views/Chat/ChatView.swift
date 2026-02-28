@@ -7,101 +7,81 @@ struct ChatView: View {
     @State private var viewModel = ChatViewModel()
     @FocusState private var isInputFocused: Bool
 
-    let vehicle: Vehicle
+    let session: ChatSession
+
+    private var vehicle: Vehicle? { session.vehicle }
 
     var body: some View {
         @Bindable var state = appState
 
-        NavigationStack {
-            VStack(spacing: 0) {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(spacing: 8) {
-                            if viewModel.messages.isEmpty {
-                                emptyStateView
-                            }
+        VStack(spacing: 0) {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack(spacing: 8) {
+                        if viewModel.messages.isEmpty {
+                            emptyStateView
+                        }
 
-                            ForEach(viewModel.messages, id: \.id) { message in
-                                if message.role != .system {
-                                    MessageBubble(message: message)
-                                        .id(message.id)
-                                }
-                            }
-
-                            if viewModel.isLoading {
-                                TypingIndicator()
-                                    .id("typing")
+                        ForEach(viewModel.messages, id: \.id) { message in
+                            if message.role != .system {
+                                MessageBubble(message: message)
+                                    .id(message.id)
                             }
                         }
-                        .padding(.vertical)
-                    }
-                    .dismissKeyboardOnTap()
-                    .onChange(of: viewModel.messages.count) {
-                        scrollToBottom(proxy: proxy)
-                    }
-                    .onChange(of: viewModel.messages.last?.content) {
-                        scrollToBottom(proxy: proxy)
-                    }
-                }
 
-                if let error = viewModel.errorMessage {
-                    ErrorBanner(message: error) {
-                        withAnimation { viewModel.errorMessage = nil }
-                    }
-                }
-            }
-            .safeAreaInset(edge: .bottom) {
-                inputBar
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        state.showGarage = true
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .font(.body)
-                            .frame(width: 34, height: 34)
-                            .background(Color(.systemGray5))
-                            .clipShape(Circle())
-                    }
-                }
-
-                ToolbarItem(placement: .principal) {
-                    Button {
-                        state.showGarage = true
-                    } label: {
-                        VStack(spacing: 2) {
-                            HStack(spacing: 4) {
-                                Text(vehicle.topBarName)
-                                    .font(.headline)
-                                    .foregroundStyle(Color.primary)
-                                Image(systemName: "chevron.down")
-                                    .font(.caption2.weight(.semibold))
-                                    .foregroundStyle(.secondary)
-                            }
-                            Text(vehicle.displayName)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                        if viewModel.isLoading {
+                            TypingIndicator()
+                                .id("typing")
                         }
                     }
+                    .padding(.vertical)
                 }
+                .dismissKeyboardOnTap()
+                .onChange(of: viewModel.messages.count) {
+                    scrollToBottom(proxy: proxy)
+                }
+                .onChange(of: viewModel.messages.last?.content) {
+                    scrollToBottom(proxy: proxy)
+                }
+            }
 
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        state.showSettings = true
-                    } label: {
-                        Image(systemName: "car.fill")
-                            .font(.body)
-                            .frame(width: 34, height: 34)
-                            .background(Color(.systemGray5))
-                            .clipShape(Circle())
-                    }
+            if let error = viewModel.errorMessage {
+                ErrorBanner(message: error) {
+                    withAnimation { viewModel.errorMessage = nil }
                 }
             }
         }
+        .safeAreaInset(edge: .bottom) {
+            inputBar
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                if let vehicle {
+                    VStack(spacing: 2) {
+                        Text(vehicle.topBarName)
+                            .font(.headline)
+                        Text(vehicle.displayName)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    state.showGarage = true
+                } label: {
+                    Image(systemName: "car.fill")
+                        .font(.body)
+                }
+            }
+        }
+        .sheet(isPresented: $state.showGarage) {
+            GarageView()
+        }
         .onAppear {
-            viewModel.loadOrCreateSession(for: vehicle, in: modelContext)
+            viewModel.loadSession(session)
         }
     }
 
@@ -114,13 +94,15 @@ struct ChatView: View {
                 .font(.system(size: 50))
                 .foregroundStyle(Color.appAccent)
 
-            Text("Ask anything about your \(vehicle.displayName)")
-                .font(.headline)
-                .multilineTextAlignment(.center)
+            if let vehicle {
+                Text("Ask anything about your \(vehicle.displayName)")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
 
-            SuggestedPrompts(prompts: viewModel.suggestedPrompts(for: vehicle)) { prompt in
-                viewModel.inputText = prompt
-                sendMessage()
+                SuggestedPrompts(prompts: viewModel.suggestedPrompts(for: vehicle)) { prompt in
+                    viewModel.inputText = prompt
+                    sendMessage()
+                }
             }
         }
         .padding()
@@ -142,7 +124,7 @@ struct ChatView: View {
                     viewModel.stopStreaming()
                 } label: {
                     Image(systemName: "stop.circle.fill")
-                        .font(.title2)
+                        .font(.system(size: 34))
                         .foregroundStyle(Color.red)
                 }
             } else {
@@ -150,7 +132,7 @@ struct ChatView: View {
                     sendMessage()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
-                        .font(.title2)
+                        .font(.system(size: 34))
                         .foregroundStyle(
                             viewModel.inputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                             ? Color.gray : Color.appAccent
@@ -167,7 +149,7 @@ struct ChatView: View {
     private func sendMessage() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
-        viewModel.sendMessage(for: vehicle, in: modelContext)
+        viewModel.sendMessage(in: modelContext)
     }
 
     private func scrollToBottom(proxy: ScrollViewProxy) {
@@ -180,7 +162,11 @@ struct ChatView: View {
 }
 
 #Preview {
-    ChatView(vehicle: Vehicle(make: "Toyota", model: "Camry", year: 2024))
-        .environment(AppState())
-        .modelContainer(for: [Vehicle.self, ChatSession.self, ChatMessage.self], inMemory: true)
+    let vehicle = Vehicle(make: "Toyota", model: "Camry", year: 2024)
+    let session = ChatSession(title: "Test", vehicle: vehicle)
+    return NavigationStack {
+        ChatView(session: session)
+    }
+    .environment(AppState())
+    .modelContainer(for: [Vehicle.self, ChatSession.self, ChatMessage.self], inMemory: true)
 }

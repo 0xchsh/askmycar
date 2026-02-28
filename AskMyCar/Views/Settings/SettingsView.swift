@@ -7,6 +7,7 @@ struct SettingsView: View {
     @State private var apiKey = ""
     @State private var baseURL = ""
     @State private var modelName = ""
+    @State private var vehicleAPIKey = ""
     @State private var showDeleteConfirmation = false
 
     var body: some View {
@@ -27,8 +28,14 @@ struct SettingsView: View {
                         .autocorrectionDisabled()
                 }
 
+                Section("Vehicle Data") {
+                    SecureField("Vehicle Databases API Key", text: $vehicleAPIKey)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                }
+
                 Section {
-                    Button("Save API Settings") {
+                    Button("Save Settings") {
                         saveSettings()
                     }
                 }
@@ -73,6 +80,7 @@ struct SettingsView: View {
         apiKey = KeychainService.load(key: AIService.apiKeyKeychainKey) ?? ""
         baseURL = UserDefaults.standard.string(forKey: AIService.baseURLKey) ?? AIService.defaultBaseURL
         modelName = UserDefaults.standard.string(forKey: AIService.modelKey) ?? AIService.defaultModel
+        vehicleAPIKey = KeychainService.load(key: VehicleAPIService.apiKeyKeychainKey) ?? ""
     }
 
     private func saveSettings() {
@@ -80,6 +88,12 @@ struct SettingsView: View {
             KeychainService.save(key: AIService.apiKeyKeychainKey, value: apiKey)
         } else {
             KeychainService.delete(key: AIService.apiKeyKeychainKey)
+        }
+
+        if !vehicleAPIKey.isEmpty {
+            KeychainService.save(key: VehicleAPIService.apiKeyKeychainKey, value: vehicleAPIKey)
+        } else {
+            KeychainService.delete(key: VehicleAPIService.apiKeyKeychainKey)
         }
 
         UserDefaults.standard.set(baseURL, forKey: AIService.baseURLKey)

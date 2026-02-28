@@ -13,6 +13,17 @@ final class Vehicle {
     var isActive: Bool
     var createdAt: Date
 
+    // Cached API data (persisted so we don't re-fetch)
+    var cachedOwnerManualURL: String?
+    var cachedMaintenanceJSON: String?
+    var cachedRecallsJSON: String?
+    var cachedWarrantyJSON: String?
+    var vehicleDataLastFetched: Date?
+
+    /// Complete vehicle profile document fed to the LLM as context.
+    /// Generated once from vehicle details + API data, then cached.
+    var cachedProfileDocument: String?
+
     @Relationship(deleteRule: .cascade, inverse: \ChatSession.vehicle)
     var sessions: [ChatSession]
 
