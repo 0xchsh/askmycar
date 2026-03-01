@@ -34,10 +34,6 @@ struct ContentView: View {
                     let sidebarWidth = geo.size.width * sidebarFraction
 
                     ZStack(alignment: .leading) {
-                        // Full-bleed background matching sidebar
-                        Color.appBackground
-                            .ignoresSafeArea()
-
                         // Sidebar — sits behind, revealed when main content pushes right
                         ChatHistoryView()
                             .frame(width: sidebarWidth)
@@ -47,7 +43,8 @@ struct ContentView: View {
                     }
                     .gesture(sidebarDragGesture(sidebarWidth: sidebarWidth))
                 }
-                .ignoresSafeArea(.keyboard)
+                .background(Color.appBackground)
+                .ignoresSafeArea()
             }
         }
         .onAppear {
