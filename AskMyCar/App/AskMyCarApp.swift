@@ -43,8 +43,8 @@ struct ContentView: View {
                     }
                     .gesture(sidebarDragGesture(sidebarWidth: sidebarWidth))
                 }
-                .background(Color.appBackground)
-                .ignoresSafeArea()
+                .ignoresSafeArea(.keyboard)
+                .background(Color.appBackground.ignoresSafeArea())
             }
         }
         .onAppear {
