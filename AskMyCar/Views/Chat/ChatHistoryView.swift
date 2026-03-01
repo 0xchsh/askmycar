@@ -17,7 +17,9 @@ struct ChatHistoryView: View {
         var previous30Days: [ChatSession] = []
         var older: [ChatSession] = []
 
-        for session in sessions {
+        let activeSessions = sessions.filter { !$0.messages.isEmpty }
+
+        for session in activeSessions {
             if calendar.isDateInToday(session.updatedAt) {
                 today.append(session)
             } else if calendar.isDateInYesterday(session.updatedAt) {
@@ -53,7 +55,7 @@ struct ChatHistoryView: View {
             .padding(.bottom, 20)
 
             // Session list
-            if sessions.isEmpty {
+            if groupedSessions.isEmpty {
                 emptyState
             } else {
                 sessionList

@@ -25,7 +25,14 @@ struct GarageView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Done") { dismiss() }
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(Color.appSecondaryText)
+                            .frame(width: 30, height: 30)
+                            .background(Color.appSecondaryBackground)
+                            .clipShape(Circle())
+                    }
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {

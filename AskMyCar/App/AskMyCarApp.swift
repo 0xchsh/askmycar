@@ -78,7 +78,6 @@ struct ContentView: View {
         .frame(width: geo.size.width)
         .clipShape(RoundedRectangle(cornerRadius: isOpen ? 20 : 0, style: .continuous))
         .shadow(color: .black.opacity(isOpen ? 0.15 : 0), radius: 10, x: -3)
-        .offset(x: mainOffset(sidebarWidth: sidebarWidth))
         .overlay {
             if isOpen {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -91,6 +90,7 @@ struct ContentView: View {
                     }
             }
         }
+        .offset(x: mainOffset(sidebarWidth: sidebarWidth))
         .animation(springAnimation, value: appState.showSidebar)
     }
 
