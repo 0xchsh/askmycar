@@ -27,7 +27,7 @@ struct GarageView: View {
                     .contentShape(Rectangle())
                     .onTapGesture { switchToVehicle(vehicle) }
                     .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                    .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 }
                 .onDelete(perform: deleteVehicles)
             }
