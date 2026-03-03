@@ -17,47 +17,34 @@ struct ChatView: View {
         @Bindable var state = appState
 
         VStack(spacing: 0) {
-            if session != nil {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(spacing: 8) {
-                            if viewModel.messages.isEmpty {
-                                emptyStateView
-                            }
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack(spacing: 8) {
+                        if viewModel.messages.isEmpty {
+                            emptyStateView
+                        }
 
-                            ForEach(viewModel.messages, id: \.id) { message in
-                                if message.role != .system {
-                                    MessageBubble(message: message)
-                                        .id(message.id)
-                                }
-                            }
-
-                            if viewModel.isLoading {
-                                TypingIndicator()
-                                    .id("typing")
+                        ForEach(viewModel.messages, id: \.id) { message in
+                            if message.role != .system {
+                                MessageBubble(message: message)
+                                    .id(message.id)
                             }
                         }
-                        .padding(.vertical)
+
+                        if viewModel.isLoading {
+                            TypingIndicator()
+                                .id("typing")
+                        }
                     }
-                    .dismissKeyboardOnTap()
-                    .onChange(of: viewModel.messages.count) {
-                        scrollToBottom(proxy: proxy)
-                    }
-                    .onChange(of: viewModel.messages.last?.content) {
-                        scrollToBottom(proxy: proxy)
-                    }
+                    .padding(.vertical)
                 }
-            } else {
-                Spacer()
-                VStack(spacing: 16) {
-                    Image(systemName: "car.fill")
-                        .font(.system(size: 50))
-                        .foregroundStyle(Color.appAccent)
-                    Text("Select or start a conversation")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
+                .dismissKeyboardOnTap()
+                .onChange(of: viewModel.messages.count) {
+                    scrollToBottom(proxy: proxy)
                 }
-                Spacer()
+                .onChange(of: viewModel.messages.last?.content) {
+                    scrollToBottom(proxy: proxy)
+                }
             }
 
             if let error = viewModel.errorMessage {
@@ -67,9 +54,7 @@ struct ChatView: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            if session != nil {
-                inputBar
-            }
+            inputBar
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

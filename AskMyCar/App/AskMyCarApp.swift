@@ -51,6 +51,18 @@ struct ContentView: View {
             if appState.activeVehicle == nil {
                 appState.activeVehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
             }
+            // Ensure there's always an active session when a vehicle exists
+            if appState.activeSession == nil, let vehicle = appState.activeVehicle {
+                // Resume the most recent session, or create a new one
+                let existing = vehicle.sessions.sorted(by: { $0.updatedAt > $1.updatedAt }).first
+                if let existing {
+                    appState.activeSession = existing
+                } else {
+                    let session = ChatSession(title: "New Chat", vehicle: vehicle)
+                    modelContext.insert(session)
+                    appState.activeSession = session
+                }
+            }
         }
         .onChange(of: vehicles.count) { oldCount, newCount in
             if oldCount == 0 && newCount > 0 {
