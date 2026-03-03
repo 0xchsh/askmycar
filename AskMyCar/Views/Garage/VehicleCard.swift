@@ -7,29 +7,22 @@ struct VehicleCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            // Vehicle image
-            if let photoURL = vehicle.cachedPhotoURL, let url = URL(string: photoURL) {
-                AsyncImage(url: url) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxWidth: .infinity)
-                            .aspectRatio(2, contentMode: .fit)
-                            .clipped()
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                    case .failure:
-                        vehicleImagePlaceholder
-                    default:
-                        vehicleImagePlaceholder
-                            .overlay {
-                                ProgressView()
-                            }
-                    }
+            // Vehicle image (CGI render from imagin.studio)
+            AsyncImage(url: vehicleImageURL) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                case .failure:
+                    vehicleImagePlaceholder
+                default:
+                    vehicleImagePlaceholder
+                        .overlay {
+                            ProgressView()
+                        }
                 }
-            } else {
-                vehicleImagePlaceholder
             }
 
             // Vehicle info
@@ -89,6 +82,18 @@ struct VehicleCard: View {
                 .foregroundStyle(Color(.systemGray3))
         }
         .aspectRatio(2, contentMode: .fit)
+    }
+
+    private var vehicleImageURL: URL? {
+        var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
+        components.queryItems = [
+            URLQueryItem(name: "customer", value: "img"),
+            URLQueryItem(name: "make", value: vehicle.make),
+            URLQueryItem(name: "modelFamily", value: vehicle.model),
+            URLQueryItem(name: "modelYear", value: "\(vehicle.year)"),
+            URLQueryItem(name: "angle", value: "5")
+        ]
+        return components.url
     }
 
     private var vehicleNickname: String {

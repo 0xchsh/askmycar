@@ -61,9 +61,6 @@ struct GarageView: View {
                     )
                 }
             }
-            .task {
-                await fetchMissingPhotos()
-            }
             .alert("Rename Vehicle", isPresented: Binding(
                 get: { vehicleToRename != nil },
                 set: { if !$0 { vehicleToRename = nil } }
@@ -107,19 +104,6 @@ struct GarageView: View {
         }
     }
 
-    private func fetchMissingPhotos() async {
-        let service = AutoDevService.shared
-        for vehicle in vehicles where vehicle.cachedPhotoURL == nil {
-            if let url = await service.fetchPhotoURL(
-                vin: vehicle.vin,
-                year: vehicle.year,
-                make: vehicle.make,
-                model: vehicle.model
-            ) {
-                vehicle.cachedPhotoURL = url
-            }
-        }
-    }
 }
 
 #Preview {
