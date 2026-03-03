@@ -76,7 +76,7 @@ final class OnboardingViewModel {
             let decoded = try await NHTSAService.decodeVIN(vinText)
             let trimmedNickname = nickname.trimmingCharacters(in: .whitespaces)
             let vehicle = Vehicle(
-                make: decoded.make,
+                make: decoded.make.capitalized,
                 model: decoded.model,
                 year: decoded.year,
                 vin: vinText.uppercased(),
@@ -96,7 +96,7 @@ final class OnboardingViewModel {
     private func addVehicleByYMM(in context: ModelContext, appState: AppState) -> Bool {
         let trimmedNickname = nickname.trimmingCharacters(in: .whitespaces)
         let vehicle = Vehicle(
-            make: make.trimmingCharacters(in: .whitespaces),
+            make: make.trimmingCharacters(in: .whitespaces).capitalized,
             model: model.trimmingCharacters(in: .whitespaces),
             year: year,
             trim: trim.trimmingCharacters(in: .whitespaces).isEmpty ? nil : trim.trimmingCharacters(in: .whitespaces),

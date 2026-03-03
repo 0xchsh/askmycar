@@ -9,7 +9,7 @@ struct VehicleCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             // Vehicle image (CGI render from imagin.studio)
-            AsyncImage(url: vehicleImageURL) { phase in
+            AsyncImage(url: vehicle.imageURL) { phase in
                 switch phase {
                 case .success(let image):
                     image
@@ -93,23 +93,11 @@ struct VehicleCard: View {
         .aspectRatio(2, contentMode: .fit)
     }
 
-    private var vehicleImageURL: URL? {
-        var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
-        components.queryItems = [
-            URLQueryItem(name: "customer", value: "img"),
-            URLQueryItem(name: "make", value: vehicle.make),
-            URLQueryItem(name: "modelFamily", value: vehicle.model),
-            URLQueryItem(name: "modelYear", value: "\(vehicle.year)"),
-            URLQueryItem(name: "angle", value: "5")
-        ]
-        return components.url
-    }
-
     private var vehicleNickname: String {
         if let nickname = vehicle.nickname, !nickname.isEmpty {
             return nickname
         }
-        let makeModel = "\(vehicle.formattedMake) \(vehicle.model)".trimmingCharacters(in: .whitespaces)
+        let makeModel = "\(vehicle.make) \(vehicle.model)".trimmingCharacters(in: .whitespaces)
         return makeModel.isEmpty ? "My Vehicle" : makeModel
     }
 }

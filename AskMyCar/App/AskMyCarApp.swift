@@ -110,6 +110,11 @@ struct ContentView: View {
         }
         .offset(x: mainOffset(sidebarWidth: sidebarWidth))
         .animation(springAnimation, value: appState.showSidebar)
+        .onChange(of: appState.showSidebar) { _, isOpen in
+            if isOpen {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+        }
     }
 
     private func mainOffset(sidebarWidth: CGFloat) -> CGFloat {

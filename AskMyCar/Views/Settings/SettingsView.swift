@@ -54,27 +54,27 @@ struct SettingsView: View {
                     Button("Clear Chat History", role: .destructive) {
                         showClearHistoryConfirmation = true
                     }
-                    .confirmationDialog("Clear Chat History", isPresented: $showClearHistoryConfirmation, titleVisibility: .visible) {
-                        Button("Clear All Chats", role: .destructive) {
-                            clearChatHistory()
-                        }
-                        Button("Cancel", role: .cancel) {}
-                    } message: {
-                        Text("This will delete all chat sessions and messages. Your vehicles will be kept.")
-                    }
 
                     Button("Delete All Data", role: .destructive) {
                         showDeleteConfirmation = true
                     }
-                    .confirmationDialog("Delete All Data", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                        Button("Delete Everything", role: .destructive) {
-                            deleteAllData()
-                        }
-                        Button("Cancel", role: .cancel) {}
-                    } message: {
-                        Text("This will permanently delete all vehicles, chat sessions, and messages. This cannot be undone.")
-                    }
                 }
+            }
+            .confirmationDialog("Clear Chat History", isPresented: $showClearHistoryConfirmation, titleVisibility: .visible) {
+                Button("Clear All Chats", role: .destructive) {
+                    clearChatHistory()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This will delete all chat sessions and messages. Your vehicles will be kept.")
+            }
+            .confirmationDialog("Delete All Data", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
+                Button("Delete Everything", role: .destructive) {
+                    deleteAllData()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This will permanently delete all vehicles, chat sessions, and messages. This cannot be undone.")
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

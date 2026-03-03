@@ -136,6 +136,14 @@ struct ChatHistoryView: View {
             }
 
             Spacer()
+
+            Button {
+                createNewSession()
+            } label: {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 16))
+                    .foregroundStyle(Color.appSecondaryText)
+            }
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)

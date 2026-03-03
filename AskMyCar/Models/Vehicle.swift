@@ -30,24 +30,32 @@ final class Vehicle {
     @Relationship(deleteRule: .cascade, inverse: \ChatSession.vehicle)
     var sessions: [ChatSession]
 
-    var formattedMake: String {
-        make.capitalized
+    var imageURL: URL? {
+        var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
+        components.queryItems = [
+            URLQueryItem(name: "customer", value: "img"),
+            URLQueryItem(name: "make", value: make),
+            URLQueryItem(name: "modelFamily", value: model),
+            URLQueryItem(name: "modelYear", value: "\(year)"),
+            URLQueryItem(name: "angle", value: "5")
+        ]
+        return components.url
     }
 
     var topBarName: String {
         if let nickname, !nickname.isEmpty { return nickname }
-        if !make.isEmpty { return formattedMake }
+        if !make.isEmpty { return make }
         return "My Vehicle"
     }
 
     var displayName: String {
-        let parts = [String(year), formattedMake, model].filter { !$0.isEmpty }
+        let parts = [String(year), make, model].filter { !$0.isEmpty }
         return parts.joined(separator: " ")
     }
 
     var fullDisplayName: String {
         if let trim {
-            return "\(year) \(formattedMake) \(model) \(trim)"
+            return "\(year) \(make) \(model) \(trim)"
         }
         return displayName
     }
