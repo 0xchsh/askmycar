@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01E78BCDCAB5D007FEFFD442 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E237AF6157CD18E5E1CFB49 /* Color+Theme.swift */; };
+		0375AF6924C339E81BF8D37D /* GlassCircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */; };
+		03D9F1DE2BBC24F45F46D06C /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349D50714C33CC701B237B5 /* LoadingIndicator.swift */; };
+		0AD91337A0D90602E2D9A8A9 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F41DD9144771FF76C382D6C /* Secrets.plist */; };
+		1132FB01421846DE8EB388B3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */; };
+		15B9E9BEFE97074C171F8863 /* SuggestedPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CA26D067D03D561BB0B0A /* SuggestedPrompts.swift */; };
+		1C624E8A4670FD896ADC9365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A29D7595C8DBA6AED33969 /* Assets.xcassets */; };
+		2716B40BFDAED5BD561CC199 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CCB94FB5A4C04763CEEAFC /* OnboardingView.swift */; };
+		290DCF0492D7E4CD3B29B8B5 /* TypingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9F7BAD635B28997FB9DE49 /* TypingIndicator.swift */; };
+		2DC2EC57280C8A7390FBB7FA /* CameraPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B435CAAFC0F14F25F5E63F /* CameraPickerView.swift */; };
+		4136F80FD6A7BE8E6F6ABE0A /* VehicleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */; };
+		52EF01E4F418BE959A4B89EC /* ChatHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82036D52B7000332C5C8FD /* ChatHistoryView.swift */; };
+		5959C072615A87842C107C1A /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F56865548DD2EA08073F2A /* GarageView.swift */; };
+		5A14965BDFC4070D5767A6D7 /* AutoDevService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF20DA77AB21E6949F9F7E59 /* AutoDevService.swift */; };
+		5B697137C534529D7A6FE3D2 /* ChatSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E765E490CD50CAA5467C93 /* ChatSession.swift */; };
+		6ABEE11F5E860A407CE045E7 /* View+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52B8D00012E66FF3FC003F /* View+Keyboard.swift */; };
+		6F78D660F38B79BD91F8B0B5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7E5B18003BF890DAEB48B /* AppState.swift */; };
+		70C00C0243DE886BF37D1EDE /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583815E5DA560957F044D196 /* ChatView.swift */; };
+		72DF95DFF8B35EF1E8414785 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D13609402242C2C61E05A0 /* ChatMessage.swift */; };
+		75B427E6AA79DCF7FE2FE330 /* SidebarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */; };
+		784EAC71C69190671099F484 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8AE9D18527DBBAB484D556 /* Vehicle.swift */; };
+		83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */; };
+		8AEAE27955F9A507B566DC30 /* NHTSAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3225CA99E1D06138C214385F /* NHTSAService.swift */; };
+		8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */; };
+		919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */; };
+		A70FA6C4AD6B82D60B9B33F0 /* OttoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020181ABD40B0EC48AF6BBC /* OttoApp.swift */; };
+		A8EF2A4ED8E1B9EEA83E366D /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78913542A764DA5DFF009082 /* MessageBubble.swift */; };
+		AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579860B8FC01571716D3E827 /* VehicleData.swift */; };
+		AD9595E1A03D1714EE578798 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */; };
+		C3405B449EAF5537C73C5F64 /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2656EA3B7530231FC9029 /* ErrorBanner.swift */; };
+		C576A7A81E557C696A8B980A /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425598F4C2F4161F5B229FEE /* KeychainService.swift */; };
+		CFE743689681BE7B02042E33 /* VINDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A36EBC0C27A5F040633E1 /* VINDecoderService.swift */; };
+		D0CAE7C42956AF2DBF7387B7 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A597A68AAE91780AF8E49 /* AIService.swift */; };
+		D1555C216B839B8525FAF7D3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D52A91FC0CA34B6A721B4D /* SettingsView.swift */; };
+		DD4BA3B94181D1D3EDE23519 /* ChatHistoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DA029B561397FCE86873F5 /* ChatHistoryRow.swift */; };
+		F64A1CCE163E6919CE596527 /* MakeModelEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56F5EA989E53FF0D5308BEA /* MakeModelEntryView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0E8AE9D18527DBBAB484D556 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
+		2F2A36EBC0C27A5F040633E1 /* VINDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderService.swift; sourceTree = "<group>"; };
+		3225CA99E1D06138C214385F /* NHTSAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NHTSAService.swift; sourceTree = "<group>"; };
+		35E765E490CD50CAA5467C93 /* ChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSession.swift; sourceTree = "<group>"; };
+		389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarOverlay.swift; sourceTree = "<group>"; };
+		3E237AF6157CD18E5E1CFB49 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		4020181ABD40B0EC48AF6BBC /* OttoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OttoApp.swift; sourceTree = "<group>"; };
+		425598F4C2F4161F5B229FEE /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		4B52B8D00012E66FF3FC003F /* View+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Keyboard.swift"; sourceTree = "<group>"; };
+		4B58CAEE160499AF457BC643 /* Otto.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCircleButtonStyle.swift; sourceTree = "<group>"; };
+		4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCard.swift; sourceTree = "<group>"; };
+		4F41DD9144771FF76C382D6C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Secrets.plist; sourceTree = "<group>"; };
+		579860B8FC01571716D3E827 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
+		583815E5DA560957F044D196 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		5F9F7BAD635B28997FB9DE49 /* TypingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicator.swift; sourceTree = "<group>"; };
+		64A29D7595C8DBA6AED33969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		668CA26D067D03D561BB0B0A /* SuggestedPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedPrompts.swift; sourceTree = "<group>"; };
+		7349D50714C33CC701B237B5 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		78913542A764DA5DFF009082 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		80CCB94FB5A4C04763CEEAFC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPIService.swift; sourceTree = "<group>"; };
+		9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		A2D7E5B18003BF890DAEB48B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B1DA029B561397FCE86873F5 /* ChatHistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryRow.swift; sourceTree = "<group>"; };
+		CF20DA77AB21E6949F9F7E59 /* AutoDevService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDevService.swift; sourceTree = "<group>"; };
+		D2B435CAAFC0F14F25F5E63F /* CameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPickerView.swift; sourceTree = "<group>"; };
+		D4C2656EA3B7530231FC9029 /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
+		D5F56865548DD2EA08073F2A /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
+		D71A597A68AAE91780AF8E49 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		DC82036D52B7000332C5C8FD /* ChatHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryView.swift; sourceTree = "<group>"; };
+		E5D13609402242C2C61E05A0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		F2D52A91FC0CA34B6A721B4D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINEntryView.swift; sourceTree = "<group>"; };
+		F56F5EA989E53FF0D5308BEA /* MakeModelEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeModelEntryView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0C7020507A50F0E455FD80D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				842CF6D77965E3D65C28F055 /* Chat */,
+				463600DD7C5FC7EB95FA2016 /* Components */,
+				143D020B2657A2E3A5D82CA5 /* Garage */,
+				ACAC61F86ECFE2D797CBA8E3 /* Onboarding */,
+				DADBE6731A0E050E044AB404 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		143D020B2657A2E3A5D82CA5 /* Garage */ = {
+			isa = PBXGroup;
+			children = (
+				D5F56865548DD2EA08073F2A /* GarageView.swift */,
+				4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */,
+			);
+			path = Garage;
+			sourceTree = "<group>";
+		};
+		30B1A2F7C84B4DB37307BBEA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A2D7E5B18003BF890DAEB48B /* AppState.swift */,
+				4020181ABD40B0EC48AF6BBC /* OttoApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		35670164E9A0C0E6B06DD6BB /* Otto */ = {
+			isa = PBXGroup;
+			children = (
+				30B1A2F7C84B4DB37307BBEA /* App */,
+				8EAFD9BC22FD0721708399C1 /* Extensions */,
+				D7F5CD6B97BF4288F82DF8CC /* Models */,
+				EBEAC87DC28D1E6C2960527C /* Resources */,
+				CBEAD71CAAC50264F6A4C2EC /* Services */,
+				C533A3A8B9EC6D169DC8C32B /* ViewModels */,
+				0C7020507A50F0E455FD80D2 /* Views */,
+			);
+			path = Otto;
+			sourceTree = "<group>";
+		};
+		463600DD7C5FC7EB95FA2016 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D2B435CAAFC0F14F25F5E63F /* CameraPickerView.swift */,
+				D4C2656EA3B7530231FC9029 /* ErrorBanner.swift */,
+				4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */,
+				7349D50714C33CC701B237B5 /* LoadingIndicator.swift */,
+				389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		801FD039A055CFF047A9071D = {
+			isa = PBXGroup;
+			children = (
+				35670164E9A0C0E6B06DD6BB /* Otto */,
+				B030F197030E2B101F3FD9DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		842CF6D77965E3D65C28F055 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B1DA029B561397FCE86873F5 /* ChatHistoryRow.swift */,
+				DC82036D52B7000332C5C8FD /* ChatHistoryView.swift */,
+				583815E5DA560957F044D196 /* ChatView.swift */,
+				78913542A764DA5DFF009082 /* MessageBubble.swift */,
+				668CA26D067D03D561BB0B0A /* SuggestedPrompts.swift */,
+				5F9F7BAD635B28997FB9DE49 /* TypingIndicator.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8EAFD9BC22FD0721708399C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3E237AF6157CD18E5E1CFB49 /* Color+Theme.swift */,
+				4B52B8D00012E66FF3FC003F /* View+Keyboard.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ACAC61F86ECFE2D797CBA8E3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F56F5EA989E53FF0D5308BEA /* MakeModelEntryView.swift */,
+				80CCB94FB5A4C04763CEEAFC /* OnboardingView.swift */,
+				F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		B030F197030E2B101F3FD9DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B58CAEE160499AF457BC643 /* Otto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C533A3A8B9EC6D169DC8C32B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */,
+				23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */,
+				9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CBEAD71CAAC50264F6A4C2EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D71A597A68AAE91780AF8E49 /* AIService.swift */,
+				CF20DA77AB21E6949F9F7E59 /* AutoDevService.swift */,
+				425598F4C2F4161F5B229FEE /* KeychainService.swift */,
+				3225CA99E1D06138C214385F /* NHTSAService.swift */,
+				8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */,
+				2F2A36EBC0C27A5F040633E1 /* VINDecoderService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D7F5CD6B97BF4288F82DF8CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5D13609402242C2C61E05A0 /* ChatMessage.swift */,
+				35E765E490CD50CAA5467C93 /* ChatSession.swift */,
+				0E8AE9D18527DBBAB484D556 /* Vehicle.swift */,
+				579860B8FC01571716D3E827 /* VehicleData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DADBE6731A0E050E044AB404 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F2D52A91FC0CA34B6A721B4D /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EBEAC87DC28D1E6C2960527C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64A29D7595C8DBA6AED33969 /* Assets.xcassets */,
+				4F41DD9144771FF76C382D6C /* Secrets.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42F97A4CADD3C826BD33FCA5 /* Otto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66AE4B9C305C0A00C5B7E7A2 /* Build configuration list for PBXNativeTarget "Otto" */;
+			buildPhases = (
+				00CC1E16C02B447563EF682E /* Sources */,
+				3585560EBF5CA1FD840445B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Otto;
+			packageProductDependencies = (
+			);
+			productName = Otto;
+			productReference = 4B58CAEE160499AF457BC643 /* Otto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5408264105F81703657B578B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = A1EA0A4D0D59DC5531AA046F /* Build configuration list for PBXProject "Otto" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 801FD039A055CFF047A9071D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42F97A4CADD3C826BD33FCA5 /* Otto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3585560EBF5CA1FD840445B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C624E8A4670FD896ADC9365 /* Assets.xcassets in Resources */,
+				0AD91337A0D90602E2D9A8A9 /* Secrets.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00CC1E16C02B447563EF682E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0CAE7C42956AF2DBF7387B7 /* AIService.swift in Sources */,
+				6F78D660F38B79BD91F8B0B5 /* AppState.swift in Sources */,
+				5A14965BDFC4070D5767A6D7 /* AutoDevService.swift in Sources */,
+				2DC2EC57280C8A7390FBB7FA /* CameraPickerView.swift in Sources */,
+				DD4BA3B94181D1D3EDE23519 /* ChatHistoryRow.swift in Sources */,
+				52EF01E4F418BE959A4B89EC /* ChatHistoryView.swift in Sources */,
+				72DF95DFF8B35EF1E8414785 /* ChatMessage.swift in Sources */,
+				5B697137C534529D7A6FE3D2 /* ChatSession.swift in Sources */,
+				70C00C0243DE886BF37D1EDE /* ChatView.swift in Sources */,
+				AD9595E1A03D1714EE578798 /* ChatViewModel.swift in Sources */,
+				01E78BCDCAB5D007FEFFD442 /* Color+Theme.swift in Sources */,
+				C3405B449EAF5537C73C5F64 /* ErrorBanner.swift in Sources */,
+				5959C072615A87842C107C1A /* GarageView.swift in Sources */,
+				919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */,
+				0375AF6924C339E81BF8D37D /* GlassCircleButtonStyle.swift in Sources */,
+				C576A7A81E557C696A8B980A /* KeychainService.swift in Sources */,
+				03D9F1DE2BBC24F45F46D06C /* LoadingIndicator.swift in Sources */,
+				F64A1CCE163E6919CE596527 /* MakeModelEntryView.swift in Sources */,
+				A8EF2A4ED8E1B9EEA83E366D /* MessageBubble.swift in Sources */,
+				8AEAE27955F9A507B566DC30 /* NHTSAService.swift in Sources */,
+				2716B40BFDAED5BD561CC199 /* OnboardingView.swift in Sources */,
+				1132FB01421846DE8EB388B3 /* OnboardingViewModel.swift in Sources */,
+				A70FA6C4AD6B82D60B9B33F0 /* OttoApp.swift in Sources */,
+				D1555C216B839B8525FAF7D3 /* SettingsView.swift in Sources */,
+				75B427E6AA79DCF7FE2FE330 /* SidebarOverlay.swift in Sources */,
+				15B9E9BEFE97074C171F8863 /* SuggestedPrompts.swift in Sources */,
+				290DCF0492D7E4CD3B29B8B5 /* TypingIndicator.swift in Sources */,
+				CFE743689681BE7B02042E33 /* VINDecoderService.swift in Sources */,
+				83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */,
+				784EAC71C69190671099F484 /* Vehicle.swift in Sources */,
+				4136F80FD6A7BE8E6F6ABE0A /* VehicleAPIService.swift in Sources */,
+				8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */,
+				AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */,
+				6ABEE11F5E860A407CE045E7 /* View+Keyboard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		28BA79D5FE99929A05066DE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otto.app;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4532BADC4192BEE8F0484F63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otto.app;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A07551D69B6CA5A43000092E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		F0C6645F9DBD90193DFEFB91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66AE4B9C305C0A00C5B7E7A2 /* Build configuration list for PBXNativeTarget "Otto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4532BADC4192BEE8F0484F63 /* Debug */,
+				28BA79D5FE99929A05066DE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A1EA0A4D0D59DC5531AA046F /* Build configuration list for PBXProject "Otto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0C6645F9DBD90193DFEFB91 /* Debug */,
+				A07551D69B6CA5A43000092E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5408264105F81703657B578B /* Project object */;
+}

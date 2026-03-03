@@ -46,7 +46,7 @@ struct ChatHistoryView: View {
         VStack(spacing: 0) {
             // Large title
             HStack {
-                Text("AskMyCar")
+                Text("Otto")
                     .font(.largeTitle.bold())
                 Spacer()
             }

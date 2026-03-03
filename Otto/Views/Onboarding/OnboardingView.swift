@@ -39,7 +39,7 @@ struct OnboardingView: View {
                 .foregroundStyle(Color.appAccent)
 
             VStack(spacing: 12) {
-                Text("Welcome to AskMyCar")
+                Text("Welcome to Otto")
                     .font(.largeTitle.bold())
                     .multilineTextAlignment(.center)
 

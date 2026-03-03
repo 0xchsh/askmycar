@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct AskMyCarApp: App {
+struct OttoApp: App {
     @State private var appState = AppState()
 
     var body: some Scene {
