@@ -105,8 +105,6 @@ struct OnboardingView: View {
                         ymmContent
                     }
 
-                    colorPicker
-
                     nicknameField
                 }
                 .padding(.horizontal)
@@ -231,48 +229,6 @@ struct OnboardingView: View {
         TextField("Nickname (optional, e.g. Hugo)", text: $viewModel.nickname)
             .textInputAutocapitalization(.words)
             .formRowStyle()
-    }
-
-    // MARK: - Color Picker
-
-    private var colorPicker: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Exterior Color")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(VehicleColor.allCases) { color in
-                        Button {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                viewModel.selectedColor = color
-                            }
-                        } label: {
-                            Circle()
-                                .fill(color.swatchColor)
-                                .frame(width: 36, height: 36)
-                                .overlay {
-                                    if color.needsBorder {
-                                        Circle()
-                                            .strokeBorder(Color(.systemGray4), lineWidth: 1.5)
-                                    }
-                                }
-                                .overlay {
-                                    if viewModel.selectedColor == color {
-                                        Circle()
-                                            .strokeBorder(Color.appAccent, lineWidth: 2.5)
-                                            .frame(width: 44, height: 44)
-                                    }
-                                }
-                        }
-                        .frame(width: 44, height: 44)
-                    }
-                }
-                .padding(.horizontal, 4)
-                .padding(.vertical, 4)
-            }
-        }
     }
 
     // MARK: - Add Button

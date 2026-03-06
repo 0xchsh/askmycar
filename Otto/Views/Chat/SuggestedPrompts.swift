@@ -23,6 +23,18 @@ struct SuggestedPrompts: View {
             }
             .padding(.horizontal)
         }
+        .mask(
+            LinearGradient(
+                stops: [
+                    .init(color: .clear, location: 0),
+                    .init(color: .white, location: 0.04),
+                    .init(color: .white, location: 0.96),
+                    .init(color: .clear, location: 1)
+                ],
+                startPoint: .leading,
+                endPoint: .trailing
+            )
+        )
     }
 }
 
