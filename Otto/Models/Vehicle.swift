@@ -10,6 +10,7 @@ final class Vehicle {
     var year: Int
     var trim: String?
     var nickname: String?
+    var exteriorColor: String?
     var isActive: Bool
     var createdAt: Date
 
@@ -32,13 +33,17 @@ final class Vehicle {
 
     var imageURL: URL? {
         var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
-        components.queryItems = [
-            URLQueryItem(name: "customer", value: "img"),
+        var items = [
+            URLQueryItem(name: "customer", value: "hrjavascript-masede"),
             URLQueryItem(name: "make", value: make),
             URLQueryItem(name: "modelFamily", value: model),
             URLQueryItem(name: "modelYear", value: "\(year)"),
             URLQueryItem(name: "angle", value: "5")
         ]
+        if let exteriorColor, !exteriorColor.isEmpty {
+            items.append(URLQueryItem(name: "paintDescription", value: exteriorColor))
+        }
+        components.queryItems = items
         return components.url
     }
 
@@ -60,7 +65,7 @@ final class Vehicle {
         return displayName
     }
 
-    init(make: String, model: String, year: Int, vin: String? = nil, trim: String? = nil, nickname: String? = nil) {
+    init(make: String, model: String, year: Int, vin: String? = nil, trim: String? = nil, nickname: String? = nil, exteriorColor: String? = nil) {
         self.id = UUID()
         self.make = make
         self.model = model
@@ -68,6 +73,7 @@ final class Vehicle {
         self.vin = vin
         self.trim = trim
         self.nickname = nickname
+        self.exteriorColor = exteriorColor
         self.isActive = true
         self.createdAt = Date()
         self.sessions = []

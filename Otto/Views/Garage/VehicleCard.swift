@@ -4,6 +4,7 @@ struct VehicleCard: View {
     let vehicle: Vehicle
     var onChat: () -> Void = {}
     var onRename: () -> Void = {}
+    var onChangeColor: () -> Void = {}
     var onDelete: () -> Void = {}
 
     var body: some View {
@@ -16,6 +17,18 @@ struct VehicleCard: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
+                        .mask(
+                            LinearGradient(
+                                stops: [
+                                    .init(color: .clear, location: 0),
+                                    .init(color: .white, location: 0.08),
+                                    .init(color: .white, location: 0.92),
+                                    .init(color: .clear, location: 1)
+                                ],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .padding(.top, -16)
                 case .failure:
                     vehicleImagePlaceholder
@@ -39,6 +52,11 @@ struct VehicleCard: View {
                                 onRename()
                             } label: {
                                 Label("Rename Vehicle", systemImage: "pencil")
+                            }
+                            Button {
+                                onChangeColor()
+                            } label: {
+                                Label("Change Color", systemImage: "paintpalette")
                             }
                             Button(role: .destructive) {
                                 onDelete()

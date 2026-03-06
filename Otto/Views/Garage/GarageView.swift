@@ -9,6 +9,7 @@ struct GarageView: View {
     @State private var viewModel = GarageViewModel()
     @State private var vehicleToRename: Vehicle?
     @State private var vehicleToDelete: Vehicle?
+    @State private var vehicleToRecolor: Vehicle?
     @State private var renameText = ""
 
     var body: some View {
@@ -21,6 +22,9 @@ struct GarageView: View {
                         onRename: {
                             renameText = vehicle.nickname ?? ""
                             vehicleToRename = vehicle
+                        },
+                        onChangeColor: {
+                            vehicleToRecolor = vehicle
                         },
                         onDelete: {
                             vehicleToDelete = vehicle
@@ -95,6 +99,9 @@ struct GarageView: View {
                 }
             } message: {
                 Text("Are you sure? All of your chats tied to this vehicle will be deleted.")
+            }
+            .sheet(item: $vehicleToRecolor) { vehicle in
+                ColorPickerSheet(vehicle: vehicle)
             }
         }
     }

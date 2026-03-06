@@ -31,10 +31,12 @@
 		83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */; };
 		8AEAE27955F9A507B566DC30 /* NHTSAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3225CA99E1D06138C214385F /* NHTSAService.swift */; };
 		8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */; };
+		87E590E7E489739D1EF1237E /* ColorPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */; };
 		919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */; };
 		A70FA6C4AD6B82D60B9B33F0 /* OttoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020181ABD40B0EC48AF6BBC /* OttoApp.swift */; };
 		A8EF2A4ED8E1B9EEA83E366D /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78913542A764DA5DFF009082 /* MessageBubble.swift */; };
 		AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579860B8FC01571716D3E827 /* VehicleData.swift */; };
+		C65C2569DDFAA4C47390370E /* VehicleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */; };
 		AD9595E1A03D1714EE578798 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */; };
 		C3405B449EAF5537C73C5F64 /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2656EA3B7530231FC9029 /* ErrorBanner.swift */; };
 		C576A7A81E557C696A8B980A /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425598F4C2F4161F5B229FEE /* KeychainService.swift */; };
@@ -60,8 +62,10 @@
 		4B58CAEE160499AF457BC643 /* Otto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCircleButtonStyle.swift; sourceTree = "<group>"; };
 		4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCard.swift; sourceTree = "<group>"; };
+		4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSheet.swift; sourceTree = "<group>"; };
 		4F41DD9144771FF76C382D6C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Secrets.plist; sourceTree = "<group>"; };
 		579860B8FC01571716D3E827 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
+		912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleColor.swift; sourceTree = "<group>"; };
 		583815E5DA560957F044D196 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		5F9F7BAD635B28997FB9DE49 /* TypingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicator.swift; sourceTree = "<group>"; };
 		64A29D7595C8DBA6AED33969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				D5F56865548DD2EA08073F2A /* GarageView.swift */,
 				4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */,
+				4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */,
 			);
 			path = Garage;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 				35E765E490CD50CAA5467C93 /* ChatSession.swift */,
 				0E8AE9D18527DBBAB484D556 /* Vehicle.swift */,
 				579860B8FC01571716D3E827 /* VehicleData.swift */,
+				912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,7 +344,9 @@
 				784EAC71C69190671099F484 /* Vehicle.swift in Sources */,
 				4136F80FD6A7BE8E6F6ABE0A /* VehicleAPIService.swift in Sources */,
 				8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */,
+				87E590E7E489739D1EF1237E /* ColorPickerSheet.swift in Sources */,
 				AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */,
+				C65C2569DDFAA4C47390370E /* VehicleColor.swift in Sources */,
 				6ABEE11F5E860A407CE045E7 /* View+Keyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

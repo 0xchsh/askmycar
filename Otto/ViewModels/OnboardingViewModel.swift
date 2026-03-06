@@ -24,6 +24,7 @@ final class OnboardingViewModel {
     var year = Calendar.current.component(.year, from: Date())
     var trim = ""
     var nickname = ""
+    var selectedColor: VehicleColor = .white
 
     var canAddByVIN: Bool { vinText.count == 17 && !isDecodingVIN }
 
@@ -81,7 +82,8 @@ final class OnboardingViewModel {
                 year: decoded.year,
                 vin: vinText.uppercased(),
                 trim: decoded.trim,
-                nickname: trimmedNickname.isEmpty ? nil : trimmedNickname
+                nickname: trimmedNickname.isEmpty ? nil : trimmedNickname,
+                exteriorColor: selectedColor.paintDescription
             )
             finalizeVehicle(vehicle, in: context, appState: appState)
             isDecodingVIN = false
@@ -100,7 +102,8 @@ final class OnboardingViewModel {
             model: model.trimmingCharacters(in: .whitespaces),
             year: year,
             trim: trim.trimmingCharacters(in: .whitespaces).isEmpty ? nil : trim.trimmingCharacters(in: .whitespaces),
-            nickname: trimmedNickname.isEmpty ? nil : trimmedNickname
+            nickname: trimmedNickname.isEmpty ? nil : trimmedNickname,
+            exteriorColor: selectedColor.paintDescription
         )
         finalizeVehicle(vehicle, in: context, appState: appState)
         return true

@@ -105,6 +105,8 @@ struct OnboardingView: View {
                         ymmContent
                     }
 
+                    colorPicker
+
                     nicknameField
                 }
                 .padding(.horizontal)
@@ -154,9 +156,7 @@ struct OnboardingView: View {
                     .font(.system(.body, design: .monospaced))
                     .textInputAutocapitalization(.characters)
                     .autocorrectionDisabled()
-                    .padding()
-                    .background(Color.appSecondaryBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .formRowStyle()
                     .onChange(of: viewModel.vinText) { _, newValue in
                         viewModel.vinText = viewModel.filterVINInput(newValue)
                     }
@@ -191,10 +191,7 @@ struct OnboardingView: View {
                 }
                 .pickerStyle(.menu)
             }
-            .padding()
-            .frame(minHeight: 50)
-            .background(Color.appSecondaryBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .formRowStyle()
 
             Button { showMakePicker = true } label: {
                 HStack {
@@ -205,9 +202,7 @@ struct OnboardingView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                .padding()
-                .background(Color.appSecondaryBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .formRowStyle()
             }
 
             Button { showModelPicker = true } label: {
@@ -219,18 +214,14 @@ struct OnboardingView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                .padding()
-                .background(Color.appSecondaryBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .formRowStyle()
             }
             .disabled(viewModel.make.isEmpty)
             .opacity(viewModel.make.isEmpty ? 0.5 : 1)
 
             TextField("Trim (optional, e.g. XSE)", text: $viewModel.trim)
                 .textInputAutocapitalization(.characters)
-                .padding()
-                .background(Color.appSecondaryBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .formRowStyle()
         }
     }
 
@@ -239,9 +230,49 @@ struct OnboardingView: View {
     private var nicknameField: some View {
         TextField("Nickname (optional, e.g. Hugo)", text: $viewModel.nickname)
             .textInputAutocapitalization(.words)
-            .padding()
-            .background(Color.appSecondaryBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .formRowStyle()
+    }
+
+    // MARK: - Color Picker
+
+    private var colorPicker: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Exterior Color")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(VehicleColor.allCases) { color in
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                viewModel.selectedColor = color
+                            }
+                        } label: {
+                            Circle()
+                                .fill(color.swatchColor)
+                                .frame(width: 36, height: 36)
+                                .overlay {
+                                    if color.needsBorder {
+                                        Circle()
+                                            .strokeBorder(Color(.systemGray4), lineWidth: 1.5)
+                                    }
+                                }
+                                .overlay {
+                                    if viewModel.selectedColor == color {
+                                        Circle()
+                                            .strokeBorder(Color.appAccent, lineWidth: 2.5)
+                                            .frame(width: 44, height: 44)
+                                    }
+                                }
+                        }
+                        .frame(width: 44, height: 44)
+                    }
+                }
+                .padding(.horizontal, 4)
+                .padding(.vertical, 4)
+            }
+        }
     }
 
     // MARK: - Add Button
@@ -276,6 +307,24 @@ struct OnboardingView: View {
     private var yearRange: [Int] {
         let currentYear = Calendar.current.component(.year, from: Date())
         return Array(stride(from: currentYear + 1, through: 1980, by: -1))
+    }
+}
+
+// MARK: - Form Row Style
+
+private struct FormRowStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .frame(minHeight: 50)
+            .background(Color.appSecondaryBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+extension View {
+    func formRowStyle() -> some View {
+        modifier(FormRowStyle())
     }
 }
 
