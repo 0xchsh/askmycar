@@ -11,6 +11,9 @@ struct OttoApp: App {
                 .environment(appState)
                 .fontDesign(.rounded)
                 .background(Color.appBackground.ignoresSafeArea())
+                .task {
+                    await appState.subscriptionManager.observeTransactionUpdates()
+                }
         }
         .modelContainer(for: [Vehicle.self, ChatSession.self, ChatMessage.self])
     }
@@ -19,6 +22,7 @@ struct OttoApp: App {
 struct ContentView: View {
     @Environment(AppState.self) private var appState
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @Query(sort: \Vehicle.createdAt) private var vehicles: [Vehicle]
 
     @State private var dragOffset: CGFloat = 0
@@ -28,7 +32,9 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if vehicles.isEmpty {
+            if appState.subscriptionManager.shouldShowPaywall {
+                PaywallView()
+            } else if vehicles.isEmpty {
                 OnboardingView()
             } else {
                 GeometryReader { geo in
@@ -52,17 +58,37 @@ struct ContentView: View {
             if appState.activeVehicle == nil {
                 appState.activeVehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
             }
-            // Ensure there's always an active session when a vehicle exists
+            // Always start with a fresh chat on launch
             if appState.activeSession == nil, let vehicle = appState.activeVehicle {
-                // Resume the most recent session, or create a new one
-                let existing = vehicle.sessions.sorted(by: { $0.updatedAt > $1.updatedAt }).first
-                if let existing {
-                    appState.activeSession = existing
-                } else {
+                let session = ChatSession(title: "New Chat", vehicle: vehicle)
+                modelContext.insert(session)
+                appState.activeSession = session
+            }
+            appState.subscriptionManager.updatePaywallVisibility()
+        }
+        .task {
+            await appState.subscriptionManager.refreshSubscriptionStatus()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            switch newPhase {
+            case .background:
+                appState.lastBackgroundDate = Date()
+            case .active:
+                // Create a fresh chat if returning after 30+ minutes
+                if let backgroundDate = appState.lastBackgroundDate,
+                   Date().timeIntervalSince(backgroundDate) > AppState.freshChatThreshold,
+                   let vehicle = appState.activeVehicle {
                     let session = ChatSession(title: "New Chat", vehicle: vehicle)
                     modelContext.insert(session)
                     appState.activeSession = session
                 }
+                appState.lastBackgroundDate = nil
+                // Refresh subscription status when returning to foreground
+                Task {
+                    await appState.subscriptionManager.refreshSubscriptionStatus()
+                }
+            default:
+                break
             }
         }
         .onChange(of: vehicles.count) { oldCount, newCount in
@@ -78,6 +104,10 @@ struct ContentView: View {
             } else if appState.activeVehicle == nil {
                 appState.activeVehicle = vehicles.first(where: { $0.isActive }) ?? vehicles.first
             }
+            appState.subscriptionManager.updatePaywallVisibility()
+        }
+        .onChange(of: appState.subscriptionManager.isSubscribed) {
+            appState.subscriptionManager.updatePaywallVisibility()
         }
     }
 

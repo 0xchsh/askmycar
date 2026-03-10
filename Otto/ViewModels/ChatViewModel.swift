@@ -17,6 +17,7 @@ final class ChatViewModel {
     private var streamTask: Task<Void, Never>?
     private let aiService = AIService()
     private let vehicleAPIService = VehicleAPIService()
+    private let supabase = SupabaseService()
     private var profileDocument: String?
 
     func loadSession(_ session: ChatSession) {
@@ -24,6 +25,8 @@ final class ChatViewModel {
         messages = session.sortedMessages
 
         guard let vehicle = session.vehicle else { return }
+
+        loadPopularQuestions(for: vehicle)
 
         // Use cached profile document if available
         if let cached = vehicle.cachedProfileDocument {
@@ -85,6 +88,14 @@ final class ChatViewModel {
         context.insert(userMessage)
         messages.append(userMessage)
         currentSession?.updatedAt = Date()
+
+        // Log question to Supabase (fire-and-forget, anonymous)
+        if !text.isEmpty {
+            let make = vehicle.make
+            let model = vehicle.model
+            let year = vehicle.year
+            Task { await supabase.logQuestion(make: make, model: model, year: year, question: text) }
+        }
 
         // Auto-title session after first user message
         if messages.filter({ $0.role == .user }).count == 1 {
@@ -149,8 +160,22 @@ final class ChatViewModel {
         isStreaming = false
     }
 
+    var popularQuestions: [String]?
+
+    func loadPopularQuestions(for vehicle: Vehicle) {
+        Task {
+            let questions = await supabase.fetchPopularQuestions(make: vehicle.make, model: vehicle.model)
+            if !questions.isEmpty {
+                popularQuestions = questions
+            }
+        }
+    }
+
     func suggestedPrompts(for vehicle: Vehicle) -> [String] {
-        [
+        if let popular = popularQuestions, !popular.isEmpty {
+            return popular
+        }
+        return [
             "What's the recommended maintenance schedule?",
             "What are common issues with my \(vehicle.displayName)?",
             "What type of oil should I use?",

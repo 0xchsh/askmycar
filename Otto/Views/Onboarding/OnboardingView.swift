@@ -144,7 +144,7 @@ struct OnboardingView: View {
     // MARK: - VIN Content
 
     private var vinContent: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("Your Vehicle Identification Number is a 17-character code found on your dashboard or door jamb.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -159,16 +159,15 @@ struct OnboardingView: View {
                         viewModel.vinText = viewModel.filterVINInput(newValue)
                     }
 
-                HStack {
-                    if let error = viewModel.vinError {
+                if let error = viewModel.vinError {
+                    HStack {
                         Image(systemName: "exclamationmark.circle.fill")
                             .foregroundStyle(.red)
                         Text(error)
                             .font(.caption)
                             .foregroundStyle(.red)
+                        Spacer()
                     }
-
-                    Spacer()
                 }
             }
         }
@@ -189,7 +188,10 @@ struct OnboardingView: View {
                 }
                 .pickerStyle(.menu)
             }
-            .formRowStyle()
+            .padding(.horizontal)
+            .frame(minHeight: 50)
+            .background(Color.appSecondaryBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
 
             Button { showMakePicker = true } label: {
                 HStack {

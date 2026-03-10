@@ -167,6 +167,7 @@ actor VehicleAPIService {
     private let baseURL = "https://api.vehicledatabases.com"
     private let defaultAPIKey = "ffce7698afcb11f0ac810242ac120002"
     private let session: URLSession
+    private let supabase = SupabaseService()
 
     init(session: URLSession = .shared) {
         self.session = session
@@ -191,32 +192,80 @@ actor VehicleAPIService {
     }
 
     func fetchOwnerManual(vin: String) async throws -> String? {
+        let cacheKey = vin
+        let endpoint = "owner_manual"
+
+        // Check Supabase cache first
+        if let cached = await supabase.fetchCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint) {
+            let response = try? JSONDecoder().decode(OwnerManualResponse.self, from: cached)
+            if let response { return response.data?.path }
+        }
+
+        // Cache miss — fetch from API
         let url = try buildURL(path: "/owner-manual/\(vin)")
         let data = try await performRequest(url: url)
         let response = try JSONDecoder().decode(OwnerManualResponse.self, from: data)
+
+        // Store in Supabase (fire-and-forget)
+        await supabase.storeCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint, json: data)
+
         return response.data?.path
     }
 
     func fetchMaintenance(vin: String) async throws -> [MaintenanceItem] {
+        let cacheKey = vin
+        let endpoint = "maintenance"
+
+        if let cached = await supabase.fetchCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint) {
+            let response = try? JSONDecoder().decode(MaintenanceResponse.self, from: cached)
+            if let response { return response.data?.maintenance ?? [] }
+        }
+
         let url = try buildURL(path: "/vehicle-maintenance/v4/\(vin)")
         let data = try await performRequest(url: url)
         let response = try JSONDecoder().decode(MaintenanceResponse.self, from: data)
+
+        await supabase.storeCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint, json: data)
+
         return response.data?.maintenance ?? []
     }
 
     func fetchRecalls(vin: String) async throws -> [RecallItem] {
+        let cacheKey = vin
+        let endpoint = "recalls"
+
+        // Recalls use 30-day expiry (handled inside SupabaseService)
+        if let cached = await supabase.fetchCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint) {
+            let response = try? JSONDecoder().decode(RecallsResponse.self, from: cached)
+            if let response { return response.data?.recall ?? [] }
+        }
+
         let url = try buildURL(path: "/vehicle-recalls/\(vin)")
         let data = try await performRequest(url: url)
         let response = try JSONDecoder().decode(RecallsResponse.self, from: data)
+
+        await supabase.storeCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint, json: data)
+
         return response.data?.recall ?? []
     }
 
     func fetchWarranty(year: Int, make: String, model: String) async throws -> [String: String] {
+        let cacheKey = "\(year)/\(make)/\(model)"
+        let endpoint = "warranty"
+
+        if let cached = await supabase.fetchCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint) {
+            let response = try? JSONDecoder().decode(WarrantyResponse.self, from: cached)
+            if let response { return response.data?.warranty ?? [:] }
+        }
+
         let encodedMake = make.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? make
         let encodedModel = model.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? model
         let url = try buildURL(path: "/vehicle-warranty/\(year)/\(encodedMake)/\(encodedModel)")
         let data = try await performRequest(url: url)
         let response = try JSONDecoder().decode(WarrantyResponse.self, from: data)
+
+        await supabase.storeCachedVehicleData(cacheKey: cacheKey, endpoint: endpoint, json: data)
+
         return response.data?.warranty ?? [:]
     }
 

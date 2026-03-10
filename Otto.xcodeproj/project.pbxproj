@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		0375AF6924C339E81BF8D37D /* GlassCircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */; };
 		03D9F1DE2BBC24F45F46D06C /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7349D50714C33CC701B237B5 /* LoadingIndicator.swift */; };
 		0AD91337A0D90602E2D9A8A9 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F41DD9144771FF76C382D6C /* Secrets.plist */; };
+		0FCAFFEA9607E2E51E89EB71 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42001FD34007D17C6C334207 /* SubscriptionManager.swift */; };
 		1132FB01421846DE8EB388B3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */; };
 		15B9E9BEFE97074C171F8863 /* SuggestedPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CA26D067D03D561BB0B0A /* SuggestedPrompts.swift */; };
 		1C624E8A4670FD896ADC9365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A29D7595C8DBA6AED33969 /* Assets.xcassets */; };
@@ -21,21 +22,24 @@
 		52EF01E4F418BE959A4B89EC /* ChatHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82036D52B7000332C5C8FD /* ChatHistoryView.swift */; };
 		5959C072615A87842C107C1A /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F56865548DD2EA08073F2A /* GarageView.swift */; };
 		5B697137C534529D7A6FE3D2 /* ChatSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E765E490CD50CAA5467C93 /* ChatSession.swift */; };
+		68B91182FCD00DB57F50D47B /* Otto.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 380D40D07EDFB0D5DB49AD3F /* Otto.storekit */; };
 		6ABEE11F5E860A407CE045E7 /* View+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52B8D00012E66FF3FC003F /* View+Keyboard.swift */; };
 		6F78D660F38B79BD91F8B0B5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7E5B18003BF890DAEB48B /* AppState.swift */; };
 		70C00C0243DE886BF37D1EDE /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583815E5DA560957F044D196 /* ChatView.swift */; };
+		71A7E341E25E0F99A473EBDB /* ColorPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF93715E3304F2A86AC7D8F /* ColorPickerSheet.swift */; };
 		72DF95DFF8B35EF1E8414785 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D13609402242C2C61E05A0 /* ChatMessage.swift */; };
 		75B427E6AA79DCF7FE2FE330 /* SidebarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */; };
 		784EAC71C69190671099F484 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8AE9D18527DBBAB484D556 /* Vehicle.swift */; };
 		83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */; };
 		8AEAE27955F9A507B566DC30 /* NHTSAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3225CA99E1D06138C214385F /* NHTSAService.swift */; };
 		8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */; };
-		87E590E7E489739D1EF1237E /* ColorPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */; };
 		919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */; };
+		91E1834FE1A79B634C357E69 /* VehicleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEAA5E546D9A141C2A4D939 /* VehicleColor.swift */; };
+		A033AAF14207DB4EC7A5FF10 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136F481B57CB5C3423A1B1DD /* PaywallView.swift */; };
 		A70FA6C4AD6B82D60B9B33F0 /* OttoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4020181ABD40B0EC48AF6BBC /* OttoApp.swift */; };
+		A81CF250854A8BEBCE5BFFF3 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1C2A68CC8C731855C54DB /* SupabaseService.swift */; };
 		A8EF2A4ED8E1B9EEA83E366D /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78913542A764DA5DFF009082 /* MessageBubble.swift */; };
 		AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579860B8FC01571716D3E827 /* VehicleData.swift */; };
-		C65C2569DDFAA4C47390370E /* VehicleColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */; };
 		AD9595E1A03D1714EE578798 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */; };
 		C3405B449EAF5537C73C5F64 /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C2656EA3B7530231FC9029 /* ErrorBanner.swift */; };
 		C576A7A81E557C696A8B980A /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425598F4C2F4161F5B229FEE /* KeychainService.swift */; };
@@ -48,29 +52,34 @@
 
 /* Begin PBXFileReference section */
 		0E8AE9D18527DBBAB484D556 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		136F481B57CB5C3423A1B1DD /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		1C0577A20EC4907E3B462A84 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		1CC1C2A68CC8C731855C54DB /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		2F2A36EBC0C27A5F040633E1 /* VINDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderService.swift; sourceTree = "<group>"; };
 		3225CA99E1D06138C214385F /* NHTSAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NHTSAService.swift; sourceTree = "<group>"; };
 		35E765E490CD50CAA5467C93 /* ChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSession.swift; sourceTree = "<group>"; };
+		380D40D07EDFB0D5DB49AD3F /* Otto.storekit */ = {isa = PBXFileReference; path = Otto.storekit; sourceTree = "<group>"; };
 		389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarOverlay.swift; sourceTree = "<group>"; };
 		3E237AF6157CD18E5E1CFB49 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		4020181ABD40B0EC48AF6BBC /* OttoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OttoApp.swift; sourceTree = "<group>"; };
+		42001FD34007D17C6C334207 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		425598F4C2F4161F5B229FEE /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4B52B8D00012E66FF3FC003F /* View+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Keyboard.swift"; sourceTree = "<group>"; };
-		4B58CAEE160499AF457BC643 /* Otto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B58CAEE160499AF457BC643 /* Otto.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Otto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD5BB4FF4EE014B3C66886B /* GlassCircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCircleButtonStyle.swift; sourceTree = "<group>"; };
 		4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCard.swift; sourceTree = "<group>"; };
-		4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSheet.swift; sourceTree = "<group>"; };
 		4F41DD9144771FF76C382D6C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Secrets.plist; sourceTree = "<group>"; };
 		579860B8FC01571716D3E827 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
-		912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleColor.swift; sourceTree = "<group>"; };
 		583815E5DA560957F044D196 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		5F9F7BAD635B28997FB9DE49 /* TypingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingIndicator.swift; sourceTree = "<group>"; };
 		64A29D7595C8DBA6AED33969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		668CA26D067D03D561BB0B0A /* SuggestedPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedPrompts.swift; sourceTree = "<group>"; };
+		6CF93715E3304F2A86AC7D8F /* ColorPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSheet.swift; sourceTree = "<group>"; };
 		7349D50714C33CC701B237B5 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		78913542A764DA5DFF009082 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		7AEAA5E546D9A141C2A4D939 /* VehicleColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleColor.swift; sourceTree = "<group>"; };
+		7D84478638370F3BF4C93044 /* Otto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Otto.entitlements; sourceTree = "<group>"; };
 		80CCB94FB5A4C04763CEEAFC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPIService.swift; sourceTree = "<group>"; };
 		9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +104,7 @@
 				463600DD7C5FC7EB95FA2016 /* Components */,
 				143D020B2657A2E3A5D82CA5 /* Garage */,
 				ACAC61F86ECFE2D797CBA8E3 /* Onboarding */,
+				59F041AFD64403768FB6E10D /* Paywall */,
 				DADBE6731A0E050E044AB404 /* Settings */,
 			);
 			path = Views;
@@ -103,9 +113,9 @@
 		143D020B2657A2E3A5D82CA5 /* Garage */ = {
 			isa = PBXGroup;
 			children = (
+				6CF93715E3304F2A86AC7D8F /* ColorPickerSheet.swift */,
 				D5F56865548DD2EA08073F2A /* GarageView.swift */,
 				4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */,
-				4D2A3BFBD9CE462D5BE555CD /* ColorPickerSheet.swift */,
 			);
 			path = Garage;
 			sourceTree = "<group>";
@@ -122,6 +132,7 @@
 		35670164E9A0C0E6B06DD6BB /* Otto */ = {
 			isa = PBXGroup;
 			children = (
+				7D84478638370F3BF4C93044 /* Otto.entitlements */,
 				30B1A2F7C84B4DB37307BBEA /* App */,
 				8EAFD9BC22FD0721708399C1 /* Extensions */,
 				D7F5CD6B97BF4288F82DF8CC /* Models */,
@@ -143,6 +154,14 @@
 				389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		59F041AFD64403768FB6E10D /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				136F481B57CB5C3423A1B1DD /* PaywallView.swift */,
+			);
+			path = Paywall;
 			sourceTree = "<group>";
 		};
 		801FD039A055CFF047A9071D = {
@@ -209,6 +228,8 @@
 				D71A597A68AAE91780AF8E49 /* AIService.swift */,
 				425598F4C2F4161F5B229FEE /* KeychainService.swift */,
 				3225CA99E1D06138C214385F /* NHTSAService.swift */,
+				42001FD34007D17C6C334207 /* SubscriptionManager.swift */,
+				1CC1C2A68CC8C731855C54DB /* SupabaseService.swift */,
 				8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */,
 				2F2A36EBC0C27A5F040633E1 /* VINDecoderService.swift */,
 			);
@@ -221,8 +242,8 @@
 				E5D13609402242C2C61E05A0 /* ChatMessage.swift */,
 				35E765E490CD50CAA5467C93 /* ChatSession.swift */,
 				0E8AE9D18527DBBAB484D556 /* Vehicle.swift */,
+				7AEAA5E546D9A141C2A4D939 /* VehicleColor.swift */,
 				579860B8FC01571716D3E827 /* VehicleData.swift */,
-				912F6BC3AD8ECC4F5A56E81D /* VehicleColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				64A29D7595C8DBA6AED33969 /* Assets.xcassets */,
+				380D40D07EDFB0D5DB49AD3F /* Otto.storekit */,
 				4F41DD9144771FF76C382D6C /* Secrets.plist */,
 			);
 			path = Resources;
@@ -284,6 +306,7 @@
 			);
 			mainGroup = 801FD039A055CFF047A9071D;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -298,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C624E8A4670FD896ADC9365 /* Assets.xcassets in Resources */,
+				68B91182FCD00DB57F50D47B /* Otto.storekit in Resources */,
 				0AD91337A0D90602E2D9A8A9 /* Secrets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +343,7 @@
 				70C00C0243DE886BF37D1EDE /* ChatView.swift in Sources */,
 				AD9595E1A03D1714EE578798 /* ChatViewModel.swift in Sources */,
 				01E78BCDCAB5D007FEFFD442 /* Color+Theme.swift in Sources */,
+				71A7E341E25E0F99A473EBDB /* ColorPickerSheet.swift in Sources */,
 				C3405B449EAF5537C73C5F64 /* ErrorBanner.swift in Sources */,
 				5959C072615A87842C107C1A /* GarageView.swift in Sources */,
 				919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */,
@@ -331,18 +356,20 @@
 				2716B40BFDAED5BD561CC199 /* OnboardingView.swift in Sources */,
 				1132FB01421846DE8EB388B3 /* OnboardingViewModel.swift in Sources */,
 				A70FA6C4AD6B82D60B9B33F0 /* OttoApp.swift in Sources */,
+				A033AAF14207DB4EC7A5FF10 /* PaywallView.swift in Sources */,
 				D1555C216B839B8525FAF7D3 /* SettingsView.swift in Sources */,
 				75B427E6AA79DCF7FE2FE330 /* SidebarOverlay.swift in Sources */,
+				0FCAFFEA9607E2E51E89EB71 /* SubscriptionManager.swift in Sources */,
 				15B9E9BEFE97074C171F8863 /* SuggestedPrompts.swift in Sources */,
+				A81CF250854A8BEBCE5BFFF3 /* SupabaseService.swift in Sources */,
 				290DCF0492D7E4CD3B29B8B5 /* TypingIndicator.swift in Sources */,
 				CFE743689681BE7B02042E33 /* VINDecoderService.swift in Sources */,
 				83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */,
 				784EAC71C69190671099F484 /* Vehicle.swift in Sources */,
 				4136F80FD6A7BE8E6F6ABE0A /* VehicleAPIService.swift in Sources */,
 				8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */,
-				87E590E7E489739D1EF1237E /* ColorPickerSheet.swift in Sources */,
+				91E1834FE1A79B634C357E69 /* VehicleColor.swift in Sources */,
 				AB3C82F9CF9811928AA0F358 /* VehicleData.swift in Sources */,
-				C65C2569DDFAA4C47390370E /* VehicleColor.swift in Sources */,
 				6ABEE11F5E860A407CE045E7 /* View+Keyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,9 +382,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Otto/Otto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9TCQHA4XGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -383,9 +410,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Otto/Otto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9TCQHA4XGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

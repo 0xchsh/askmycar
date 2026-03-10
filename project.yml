@@ -10,6 +10,15 @@ settings:
   base:
     SWIFT_VERSION: "5.9"
 
+schemes:
+  Otto:
+    build:
+      targets:
+        Otto: all
+    run:
+      config: Debug
+      storeKitConfiguration: Otto/Resources/Otto.storekit
+
 targets:
   Otto:
     type: application
@@ -29,5 +38,6 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.otto.app
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_ENTITLEMENTS: Otto/Otto.entitlements
         SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
         SUPPORTS_MACCATALYST: NO

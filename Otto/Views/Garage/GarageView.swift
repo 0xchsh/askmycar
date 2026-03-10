@@ -80,13 +80,12 @@ struct GarageView: View {
                     vehicleToRename = nil
                 }
             }
-            .confirmationDialog(
+            .alert(
                 "Delete \(vehicleToDelete?.topBarName ?? "Vehicle")?",
                 isPresented: Binding(
                     get: { vehicleToDelete != nil },
                     set: { if !$0 { vehicleToDelete = nil } }
-                ),
-                titleVisibility: .visible
+                )
             ) {
                 Button("Delete Vehicle", role: .destructive) {
                     if let vehicle = vehicleToDelete {

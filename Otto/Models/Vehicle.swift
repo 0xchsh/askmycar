@@ -29,12 +29,15 @@ final class Vehicle {
     var sessions: [ChatSession]
 
     var imageURL: URL? {
+        // Imagin Studio may not have renders for very new model years;
+        // cap to 2025 so we get a real image instead of a draped placeholder.
+        let imageYear = min(year, 2025)
         var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
         var items = [
-            URLQueryItem(name: "customer", value: "hrjavascript-masede"),
+            URLQueryItem(name: "customer", value: "img"),
             URLQueryItem(name: "make", value: make),
             URLQueryItem(name: "modelFamily", value: model),
-            URLQueryItem(name: "modelYear", value: "\(year)"),
+            URLQueryItem(name: "modelYear", value: "\(imageYear)"),
             URLQueryItem(name: "angle", value: "5")
         ]
         if let exteriorColor, !exteriorColor.isEmpty {

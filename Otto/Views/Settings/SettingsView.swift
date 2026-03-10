@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
+    @Environment(AppState.self) private var appState
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @State private var apiKey = ""
@@ -41,6 +42,23 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("Subscription") {
+                    if appState.subscriptionManager.isSubscribed {
+                        HStack {
+                            Text("Otto Premium")
+                            Spacer()
+                            Text("Active")
+                                .foregroundStyle(.secondary)
+                        }
+                        Link("Manage Subscription", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
+                    } else {
+                        Button("View Plans") {
+                            dismiss()
+                            appState.subscriptionManager.shouldShowPaywall = true
+                        }
+                    }
+                }
+
                 Section("About") {
                     HStack {
                         Text("Version")
@@ -60,22 +78,6 @@ struct SettingsView: View {
                     }
                 }
             }
-            .confirmationDialog("Clear Chat History", isPresented: $showClearHistoryConfirmation, titleVisibility: .visible) {
-                Button("Clear All Chats", role: .destructive) {
-                    clearChatHistory()
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("This will delete all chat sessions and messages. Your vehicles will be kept.")
-            }
-            .confirmationDialog("Delete All Data", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                Button("Delete Everything", role: .destructive) {
-                    deleteAllData()
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("This will permanently delete all vehicles, chat sessions, and messages. This cannot be undone.")
-            }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -88,6 +90,22 @@ struct SettingsView: View {
             .onAppear {
                 loadSettings()
             }
+        }
+        .alert("Clear Chat History", isPresented: $showClearHistoryConfirmation) {
+            Button("Clear All Chats", role: .destructive) {
+                clearChatHistory()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will delete all chat sessions and messages. Your vehicles will be kept.")
+        }
+        .alert("Delete All Data", isPresented: $showDeleteConfirmation) {
+            Button("Delete Everything", role: .destructive) {
+                deleteAllData()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will permanently delete all vehicles, chat sessions, and messages. This cannot be undone.")
         }
     }
 
@@ -119,8 +137,10 @@ struct SettingsView: View {
         do {
             try modelContext.delete(model: ChatMessage.self)
             try modelContext.delete(model: ChatSession.self)
+            try modelContext.save()
+            appState.activeSession = nil
         } catch {
-            // Deletion failed silently
+            print("Clear chat history failed: \(error)")
         }
     }
 
@@ -129,13 +149,18 @@ struct SettingsView: View {
             try modelContext.delete(model: ChatMessage.self)
             try modelContext.delete(model: ChatSession.self)
             try modelContext.delete(model: Vehicle.self)
+            try modelContext.save()
+            appState.activeSession = nil
+            appState.activeVehicle = nil
+            dismiss()
         } catch {
-            // Data deletion failed silently
+            print("Delete all data failed: \(error)")
         }
     }
 }
 
 #Preview {
     SettingsView()
+        .environment(AppState())
         .modelContainer(for: [Vehicle.self, ChatSession.self, ChatMessage.self], inMemory: true)
 }

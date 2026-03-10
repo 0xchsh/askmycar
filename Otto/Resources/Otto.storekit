@@ -1,0 +1,148 @@
+{
+  "identifier" : "8A5C6B2E-1F3D-4A7B-9C8E-0D2F4E6A8B1C",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1234567890",
+    "_developerTeamID" : "XXXXXXXXXX",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "D3A1B5C7-9E2F-4D6A-8B0C-1E3F5A7B9D2E",
+      "localizations" : [
+        {
+          "description" : "Full access to Otto",
+          "displayName" : "Otto Premium",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "Otto Premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+          "introductoryOffer" : {
+            "displayPrice" : "0",
+            "internalID" : "F1E2D3C4-B5A6-9870-FEDC-BA0987654321",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Monthly access to Otto Premium",
+              "displayName" : "Otto Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.otto.app.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Otto Monthly",
+          "subscriptionGroupID" : "D3A1B5C7-9E2F-4D6A-8B0C-1E3F5A7B9D2E",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "29.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "B2C3D4E5-F6A7-8901-BCDE-F12345678901",
+          "introductoryOffer" : {
+            "displayPrice" : "0",
+            "internalID" : "E2D3C4B5-A6F7-0198-EDCB-A09876543210",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Yearly access to Otto Premium",
+              "displayName" : "Otto Yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.otto.app.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Otto Yearly",
+          "subscriptionGroupID" : "D3A1B5C7-9E2F-4D6A-8B0C-1E3F5A7B9D2E",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

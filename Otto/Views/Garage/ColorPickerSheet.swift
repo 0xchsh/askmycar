@@ -8,29 +8,8 @@ struct ColorPickerSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 32) {
-                // Live preview
-                AsyncImage(url: previewURL) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    default:
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color(.secondarySystemBackground))
-                            .aspectRatio(2, contentMode: .fit)
-                            .overlay { ProgressView() }
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal)
-
                 // Color swatches
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Exterior Color")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), spacing: 16) {
                         ForEach(VehicleColor.allCases) { color in
                             Button {
@@ -61,8 +40,6 @@ struct ColorPickerSheet: View {
                 }
                 .padding(.horizontal)
 
-                Spacer()
-
                 Button {
                     vehicle.exteriorColor = selected.paintDescription
                     dismiss()
@@ -92,16 +69,17 @@ struct ColorPickerSheet: View {
                 selected = match
             }
         }
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.height(280)])
     }
 
     private var previewURL: URL? {
+        let imageYear = min(vehicle.year, 2025)
         var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
         var items = [
-            URLQueryItem(name: "customer", value: "hrjavascript-masede"),
+            URLQueryItem(name: "customer", value: "img"),
             URLQueryItem(name: "make", value: vehicle.make),
             URLQueryItem(name: "modelFamily", value: vehicle.model),
-            URLQueryItem(name: "modelYear", value: "\(vehicle.year)"),
+            URLQueryItem(name: "modelYear", value: "\(imageYear)"),
             URLQueryItem(name: "angle", value: "5"),
             URLQueryItem(name: "paintDescription", value: selected.paintDescription)
         ]
