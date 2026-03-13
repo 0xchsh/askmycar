@@ -31,6 +31,7 @@
 		75B427E6AA79DCF7FE2FE330 /* SidebarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389597EA41F1731BA6A4CE5D /* SidebarOverlay.swift */; };
 		784EAC71C69190671099F484 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8AE9D18527DBBAB484D556 /* Vehicle.swift */; };
 		83B89213046FA18E7D84BE84 /* VINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A478F7FEC736F25FEEB0E2 /* VINEntryView.swift */; };
+		8A1B3C7F92D4E6A8B0F15E23 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E8A4C61F7B3D9C0E24A17 /* Haptics.swift */; };
 		8AEAE27955F9A507B566DC30 /* NHTSAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3225CA99E1D06138C214385F /* NHTSAService.swift */; };
 		8BEA0BAD3FFDF6478B2BE76D /* VehicleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA0B0BB8F4B6FA656E8EAA /* VehicleCard.swift */; };
 		919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D77CFE8A6E8922AAC1456C /* GarageViewModel.swift */; };
@@ -80,6 +81,7 @@
 		7349D50714C33CC701B237B5 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		78913542A764DA5DFF009082 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		7D84478638370F3BF4C93044 /* Otto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Otto.entitlements; sourceTree = "<group>"; };
+		5D2E8A4C61F7B3D9C0E24A17 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		80CCB94FB5A4C04763CEEAFC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		8D80EE0217209DBD2AA36278 /* VehicleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPIService.swift; sourceTree = "<group>"; };
 		9B7DDC19E503A6E0921EE4FF /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				D71A597A68AAE91780AF8E49 /* AIService.swift */,
+				5D2E8A4C61F7B3D9C0E24A17 /* Haptics.swift */,
 				425598F4C2F4161F5B229FEE /* KeychainService.swift */,
 				3225CA99E1D06138C214385F /* NHTSAService.swift */,
 				42001FD34007D17C6C334207 /* SubscriptionManager.swift */,
@@ -351,6 +354,7 @@
 				5959C072615A87842C107C1A /* GarageView.swift in Sources */,
 				919D2391967F4FC771183BB2 /* GarageViewModel.swift in Sources */,
 				0375AF6924C339E81BF8D37D /* GlassCircleButtonStyle.swift in Sources */,
+				8A1B3C7F92D4E6A8B0F15E23 /* Haptics.swift in Sources */,
 				C576A7A81E557C696A8B980A /* KeychainService.swift in Sources */,
 				03D9F1DE2BBC24F45F46D06C /* LoadingIndicator.swift in Sources */,
 				F64A1CCE163E6919CE596527 /* MakeModelEntryView.swift in Sources */,

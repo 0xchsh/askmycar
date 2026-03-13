@@ -68,6 +68,7 @@ struct PaywallView: View {
 
             // CTA
             Button {
+                Haptics.impact()
                 Task { await purchaseSelected() }
             } label: {
                 Group {
@@ -129,7 +130,10 @@ struct PaywallView: View {
     private func planOption(type: PlanType, title: String, price: String, detail: String, badge: String?) -> some View {
         let isSelected = selectedPlan == type
 
-        return Button { selectedPlan = type } label: {
+        return Button {
+            Haptics.selection()
+            selectedPlan = type
+        } label: {
             HStack {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundStyle(isSelected ? Color.appAccent : .secondary)

@@ -38,6 +38,7 @@ struct SettingsView: View {
 
                 Section {
                     Button("Save Settings") {
+                        Haptics.notification(.success)
                         saveSettings()
                     }
                 }
@@ -93,6 +94,7 @@ struct SettingsView: View {
         }
         .alert("Clear Chat History", isPresented: $showClearHistoryConfirmation) {
             Button("Clear All Chats", role: .destructive) {
+                Haptics.notification(.warning)
                 clearChatHistory()
             }
             Button("Cancel", role: .cancel) {}
@@ -101,6 +103,7 @@ struct SettingsView: View {
         }
         .alert("Delete All Data", isPresented: $showDeleteConfirmation) {
             Button("Delete Everything", role: .destructive) {
+                Haptics.notification(.error)
                 deleteAllData()
             }
             Button("Cancel", role: .cancel) {}

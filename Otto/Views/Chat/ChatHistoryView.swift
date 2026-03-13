@@ -150,6 +150,7 @@ struct ChatHistoryView: View {
     }
 
     private func selectSession(_ session: ChatSession) {
+        Haptics.impact(.light)
         appState.activeSession = session
         withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
             appState.showSidebar = false
@@ -157,6 +158,7 @@ struct ChatHistoryView: View {
     }
 
     private func createNewSession() {
+        Haptics.impact()
         guard let vehicle = appState.activeVehicle else { return }
         let session = ChatSession(title: "New Chat", vehicle: vehicle)
         modelContext.insert(session)
@@ -167,6 +169,7 @@ struct ChatHistoryView: View {
     }
 
     private func deleteSession(_ session: ChatSession) {
+        Haptics.notification(.warning)
         let wasActive = session.id == appState.activeSession?.id
         modelContext.delete(session)
         if wasActive {

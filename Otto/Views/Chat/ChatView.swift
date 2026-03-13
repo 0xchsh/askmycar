@@ -156,6 +156,7 @@ struct ChatView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
 
                         Button {
+                            Haptics.impact(.light)
                             withAnimation { viewModel.removeImage(at: index) }
                         } label: {
                             Image(systemName: "xmark.circle.fill")
@@ -199,6 +200,7 @@ struct ChatView: View {
         Group {
             if viewModel.isStreaming {
                 Button {
+                    Haptics.impact(.light)
                     viewModel.stopStreaming()
                 } label: {
                     Image(systemName: "stop.circle.fill")
@@ -287,8 +289,7 @@ struct ChatView: View {
     }
 
     private func sendMessage() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        Haptics.impact()
         viewModel.sendMessage(in: modelContext)
     }
 

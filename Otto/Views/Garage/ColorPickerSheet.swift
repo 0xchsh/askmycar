@@ -24,6 +24,7 @@ struct ColorPickerSheet: View {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 12) {
                             ForEach(availableColors, id: \.self) { color in
                                 Button {
+                                    Haptics.selection()
                                     withAnimation(.easeInOut(duration: 0.2)) {
                                         selected = color
                                     }
@@ -62,6 +63,7 @@ struct ColorPickerSheet: View {
                 }
 
                 Button {
+                    Haptics.notification(.success)
                     vehicle.exteriorColor = selected == "default" ? nil : selected
                     vehicle.clearCachedImageURLs()
                     dismiss()

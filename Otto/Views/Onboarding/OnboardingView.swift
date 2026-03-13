@@ -58,6 +58,7 @@ struct OnboardingView: View {
             Spacer()
 
             Button {
+                Haptics.impact()
                 withAnimation { showIntro = false }
             } label: {
                 Text("Get Started")
@@ -237,9 +238,11 @@ struct OnboardingView: View {
 
     private var addButton: some View {
         Button {
+            Haptics.impact()
             Task {
                 let success = await viewModel.addVehicle(in: modelContext, appState: appState)
                 if success {
+                    Haptics.notification(.success)
                     appState.showGarage = false
                     dismiss()
                 }

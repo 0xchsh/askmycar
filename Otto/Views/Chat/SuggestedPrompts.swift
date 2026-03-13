@@ -9,6 +9,7 @@ struct SuggestedPrompts: View {
             HStack(spacing: 10) {
                 ForEach(prompts, id: \.self) { prompt in
                     Button {
+                        Haptics.impact(.light)
                         onSelect(prompt)
                     } label: {
                         Text(prompt)

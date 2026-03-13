@@ -88,6 +88,7 @@ struct GarageView: View {
                 )
             ) {
                 Button("Delete Vehicle", role: .destructive) {
+                    Haptics.notification(.warning)
                     if let vehicle = vehicleToDelete {
                         viewModel.deleteVehicle(vehicle, in: modelContext, appState: appState)
                     }
@@ -106,8 +107,7 @@ struct GarageView: View {
     }
 
     private func switchToVehicle(_ vehicle: Vehicle) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        Haptics.impact()
 
         // If tapping the already-active vehicle, just dismiss
         if vehicle.id == appState.activeVehicle?.id {
@@ -127,8 +127,7 @@ struct GarageView: View {
     }
 
     private func startNewChat(with vehicle: Vehicle) {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        Haptics.impact()
 
         viewModel.setActiveVehicle(vehicle, allVehicles: vehicles, appState: appState)
 
