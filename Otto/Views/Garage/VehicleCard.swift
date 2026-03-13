@@ -9,36 +9,22 @@ struct VehicleCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            // Vehicle image (CGI render from imagin.studio)
-            AsyncImage(url: vehicle.imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .mask(
-                            LinearGradient(
-                                stops: [
-                                    .init(color: .clear, location: 0),
-                                    .init(color: .white, location: 0.08),
-                                    .init(color: .white, location: 0.92),
-                                    .init(color: .clear, location: 1)
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .padding(.top, -16)
-                case .failure:
-                    vehicleImagePlaceholder
-                default:
-                    vehicleImagePlaceholder
-                        .overlay {
-                            ProgressView()
-                        }
-                }
-            }
+            // Vehicle image (from Vehicle Imagery API)
+            VehicleAsyncImage(vehicle: vehicle)
+                .frame(maxWidth: .infinity)
+                .mask(
+                    LinearGradient(
+                        stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .white, location: 0.03),
+                            .init(color: .white, location: 0.97),
+                            .init(color: .clear, location: 1)
+                        ],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .padding(.top, -16)
 
             // Vehicle info
             HStack(alignment: .bottom) {

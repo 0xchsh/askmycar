@@ -20,6 +20,20 @@ final class ChatViewModel {
     private let supabase = SupabaseService()
     private var profileDocument: String?
 
+    func clearSession() {
+        streamTask?.cancel()
+        streamTask = nil
+        currentSession = nil
+        messages = []
+        inputText = ""
+        selectedImages = []
+        isLoading = false
+        isStreaming = false
+        errorMessage = nil
+        profileDocument = nil
+        popularQuestions = nil
+    }
+
     func loadSession(_ session: ChatSession) {
         currentSession = session
         messages = session.sortedMessages

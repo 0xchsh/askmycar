@@ -104,6 +104,8 @@ struct ChatView: View {
         .onChange(of: appState.activeSession) { _, newSession in
             if let newSession {
                 viewModel.loadSession(newSession)
+            } else {
+                viewModel.clearSession()
             }
         }
     }
@@ -111,20 +113,9 @@ struct ChatView: View {
     private var emptyStateView: some View {
         VStack(spacing: 12) {
             if let vehicle {
-                AsyncImage(url: vehicle.imageURL) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.bottom, -10)
-                    default:
-                        Image(systemName: "car.fill")
-                            .font(.system(size: 50))
-                            .foregroundStyle(Color.appAccent)
-                    }
-                }
-                .frame(maxWidth: 260)
+                VehicleAsyncImage(vehicle: vehicle)
+                    .frame(maxWidth: 260)
+                    .padding(.bottom, -10)
 
                 VStack(spacing: 4) {
                     Text("Ask anything about your")

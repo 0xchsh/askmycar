@@ -7,20 +7,17 @@ struct ChatHistoryRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            AsyncImage(url: session.vehicle?.imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                default:
+            Group {
+                if let vehicle = session.vehicle {
+                    VehicleAsyncImage(vehicle: vehicle, view: "front")
+                } else {
                     Image(systemName: "car.side.fill")
                         .font(.system(size: 16))
                         .foregroundStyle(Color(.systemGray3))
                         .scaleEffect(x: -1)
                 }
             }
-            .frame(width: 44, height: 32)
+            .frame(width: 56, height: 40)
 
             Text(session.previewText)
                 .font(.body)

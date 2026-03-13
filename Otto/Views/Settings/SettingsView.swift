@@ -135,10 +135,21 @@ struct SettingsView: View {
 
     private func clearChatHistory() {
         do {
-            try modelContext.delete(model: ChatMessage.self)
-            try modelContext.delete(model: ChatSession.self)
+            let sessions = try modelContext.fetch(FetchDescriptor<ChatSession>())
+            for session in sessions {
+                modelContext.delete(session)
+            }
             try modelContext.save()
-            appState.activeSession = nil
+
+            // Create a fresh session and dismiss settings
+            if let vehicle = appState.activeVehicle {
+                let newSession = ChatSession(title: "New Chat", vehicle: vehicle)
+                modelContext.insert(newSession)
+                appState.activeSession = newSession
+            } else {
+                appState.activeSession = nil
+            }
+            dismiss()
         } catch {
             print("Clear chat history failed: \(error)")
         }

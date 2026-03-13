@@ -14,6 +14,13 @@ final class Vehicle {
     var isActive: Bool
     var createdAt: Date
 
+    // Cached vehicle images (Vehicle Imagery API — signed URLs expire in 7 days)
+    // JSON dict keyed by view name, e.g. {"right":"https://...","front":"https://..."}
+    var cachedImageURLs: String?
+    var imageURLExpiry: Date?
+    var resolvedVariant: String?
+    var resolvedTrim: String?
+
     // Cached API data (persisted so we don't re-fetch)
     var cachedOwnerManualURL: String?
     var cachedMaintenanceJSON: String?
@@ -28,23 +35,37 @@ final class Vehicle {
     @Relationship(deleteRule: .cascade, inverse: \ChatSession.vehicle)
     var sessions: [ChatSession]
 
-    var imageURL: URL? {
-        // Imagin Studio may not have renders for very new model years;
-        // cap to 2025 so we get a real image instead of a draped placeholder.
-        let imageYear = min(year, 2025)
-        var components = URLComponents(string: "https://cdn.imagin.studio/getimage")!
-        var items = [
-            URLQueryItem(name: "customer", value: "img"),
-            URLQueryItem(name: "make", value: make),
-            URLQueryItem(name: "modelFamily", value: model),
-            URLQueryItem(name: "modelYear", value: "\(imageYear)"),
-            URLQueryItem(name: "angle", value: "5")
-        ]
-        if let exteriorColor, !exteriorColor.isEmpty {
-            items.append(URLQueryItem(name: "paintDescription", value: exteriorColor))
+    var imagesExpired: Bool {
+        (imageURLExpiry ?? .distantPast) <= Date()
+    }
+
+    func cachedImageURL(for view: String) -> String? {
+        guard !imagesExpired,
+              let json = cachedImageURLs,
+              let data = json.data(using: .utf8),
+              let dict = try? JSONSerialization.jsonObject(with: data) as? [String: String] else {
+            return nil
         }
-        components.queryItems = items
-        return components.url
+        return dict[view]
+    }
+
+    func setCachedImageURL(_ url: String, for view: String) {
+        var dict: [String: String] = [:]
+        if let json = cachedImageURLs,
+           let data = json.data(using: .utf8),
+           let existing = try? JSONSerialization.jsonObject(with: data) as? [String: String] {
+            dict = existing
+        }
+        dict[view] = url
+        if let data = try? JSONSerialization.data(withJSONObject: dict),
+           let json = String(data: data, encoding: .utf8) {
+            cachedImageURLs = json
+        }
+    }
+
+    func clearCachedImageURLs() {
+        cachedImageURLs = nil
+        imageURLExpiry = nil
     }
 
     var topBarName: String {
